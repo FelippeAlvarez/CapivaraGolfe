@@ -1,0 +1,6 @@
+node_modules/
+export/
+icones/
+__pycache__/
+_teste.html
+*.png
