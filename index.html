@@ -1386,6 +1386,11 @@ body.ed-open { overflow: hidden; }
   const LIE_DIST = { sand: 0.5, rough: 0.8 };                  // fração da distância máxima mantida
   const LIE_ERR = { tee: 0.85, fairway: 1, green: 1, rough: 1.25, sand: 1.5 };
   const CLUB_ERR = [1.0, 0.9, 0.75, 0.6, 0.35];
+  // desvio de direção já na saída quando a tacada cai DENTRO da faixa verde (só jogador humano; a IA já tem o seu erro de direção em aiShoot).
+  // valor = desvio máximo (rad) na borda da faixa; no centro é zero e cresce linearmente até a borda, para o lado em que o marcador parou (+ = direita).
+  // calibrado por taco como ~47% do erro mínimo de quem erra a faixa (0,4 × CLUB_ERR × fator de saída): Driver ~1,8°, Madeira ~1,7°, Ferro ~1,4°, Wedge ~1,1°, Putter ~0,9° na borda da faixa
+  // (cada tacada sorteia 70%–130% desse valor). Assim o desvio cresce de forma contínua até a borda, sem salto brusco ao sair da faixa verde.
+  const CLUB_DISP = [0.032, 0.029, 0.024, 0.019, 0.016];
   const CLUB_ZONE = [0.12, 0.14, 0.16, 0.18, 0.22];   // largura da faixa verde (escala -1..1)
   const LIE_ZONE = { rough: 0.8, sand: 0.6 };             // rough e areia estreitam a faixa verde
   function zoneFor(i) { return CLUB_ZONE[i] * (LIE_ZONE[lieKey] || 1); }
@@ -2235,11 +2240,13 @@ body.ed-open { overflow: hidden; }
     const E = mag > 0 ? Math.sign(e) * (0.4 + 0.6 * mag) * CLUB_ERR[clubIdx] * (LIE_ERR[lieKey] || 1) : 0;
     const loss = mag > 0 ? 0.09 + 0.17 * mag : 0;
     const m = lieMult();
+    const dev = (precision && !miss && mag === 0 && zone > 0 && !isAi()) ? Math.max(-1, Math.min(1, e / zone)) : 0;     // posição dentro da faixa verde (-1..1)
+    const D = dev ? dev * (0.7 + 0.6 * Math.random()) * CLUB_DISP[clubIdx] * (LIE_ERR[lieKey] || 1) : 0;                    // desvio angular de saída
     if (miss) {
       mishit(c, ang, pow, m);
     } else if (c.loft > 0) {
       const v = c.vmax * Math.sqrt(pow * m) * (1 - loss);
-      const a2 = ang + E * 0.17;                                  // saída torta
+      const a2 = ang + E * 0.17 + D;                              // saída torta (+ pequeno desvio dentro da faixa verde)
       ball.vx = Math.cos(a2) * v * Math.cos(c.th);
       ball.vy = Math.sin(a2) * v * Math.cos(c.th);
       ball.vz = v * Math.sin(c.th);
@@ -2248,7 +2255,7 @@ body.ed-open { overflow: hidden; }
       const sp = SURF[lieKey] || SURF.rough;
       const gs0 = groundSlope(ball.x, ball.y);
       const v = lieKey === 'green' ? PUTT_RANGE * Math.pow(pow, PUTT_EXP) * m * sp.k + REST_G + 0.9 * Math.hypot(gs0[0], gs0[1]) / sp.k + 0.25 : puttSpeed(ball.x, ball.y, ang, PUTT_RANGE * Math.pow(pow, PUTT_EXP) * m, sp.k, REST_V);   // acima do limite de parada na ladeira
-      const a2 = ang + E * 0.24;
+      const a2 = ang + E * 0.24 + D;
       ball.vx = Math.cos(a2) * v;
       ball.vy = Math.sin(a2) * v;
       ball.vz = 0;
@@ -2257,7 +2264,7 @@ body.ed-open { overflow: hidden; }
     if (precision && !miss) {
       const A = Math.abs(E);
       let msg;
-      if (mag === 0) msg = 'Tacada perfeita!';
+      if (mag === 0) msg = Math.abs(dev) < 0.25 ? 'Tacada perfeita!' : (c.loft > 0 ? 'Boa tacada, saiu um pouco p/ a ' : 'Boa tacada, putt um pouco p/ a ') + (dev > 0 ? 'direita' : 'esquerda');
       else if (c.loft > 0) msg = (A < 0.35 ? 'Leve ' : A < 0.6 ? '' : A < 0.85 ? 'Forte ' : 'Enorme ') + (E > 0 ? 'slice' : 'hook') + (A < 0.35 ? '' : '!');
       else msg = E > 0 ? 'Empurrou o putt' : 'Puxou o putt';
       showToast(msg.charAt(0).toUpperCase() + msg.slice(1), 1300);

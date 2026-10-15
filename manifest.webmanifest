@@ -3,6 +3,7 @@
   "short_name": "Capivara Golfe",
   "description": "Golfe para 1 a 4 jogadores, com adversários de IA, jogado com a Head Pro.",
   "lang": "pt-BR",
+  "id": "/CapivaraGolfe/app-capivara-golfe-2",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
