@@ -41,9 +41,9 @@ open(out+'/index.html','w').write(h2)
 # arquivo único (sem service worker) — abre em qualquer navegador
 single=head.replace('<link rel="manifest" href="manifest.webmanifest">\n','').replace('<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">\n','')+body+'</body>\n</html>\n'
 open('export/capivara-golfe-arquivo-unico.html','w').write(single)
-json.dump({"name":"Capivara Golfe","short_name":"Capivara Golfe","description":"Golfe para 1 a 4 jogadores, com adversários de IA, jogado com a Head Pro.","lang":"pt-BR","start_url":"./","scope":"./","display":"standalone","orientation":"any","background_color":"#edf1e8","theme_color":"#1c6a38","categories":["games","sports"],
+json.dump({"name":"Capivara Golfe","short_name":"Capivara Golfe","description":"Golfe para 1 a 4 jogadores, com adversários de IA, jogado com a Head Pro.","lang":"pt-BR","id":"/CapivaraGolfe/app-capivara-golfe-2","start_url":"./","scope":"./","display":"standalone","orientation":"any","background_color":"#edf1e8","theme_color":"#1c6a38","categories":["games","sports"],
  "icons":[{"src":"icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},{"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},{"src":"icons/icon-maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}]},open(out+'/manifest.webmanifest','w'),indent=2,ensure_ascii=False)
-open(out+'/sw.js','w').write('''const CACHE = 'capivara-golfe-v40';
+open(out+'/sw.js','w').write('''const CACHE = 'capivara-golfe-v42';
 const FILES = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png', 'icons/apple-touch-icon.png'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
@@ -55,7 +55,7 @@ self.addEventListener('fetch', (e) => {
 });
 ''')
 for f in ['icon-192.png','icon-512.png','icon-maskable-512.png']: shutil.copy('icones/'+f,out+'/icons/'+f)
-shutil.copy('logo.svg',out+'/icons/logo.svg')
+shutil.copy('icones/logo.svg',out+'/icons/logo.svg')
 shutil.copy('icones/apple-touch-icon.png',out+'/icons/apple-touch-icon.png')
 open('export/LEIA-ME-INSTALAR.txt','w').write('''CAPIVARA GOLFE — como instalar e distribuir
 ==========================================
@@ -79,7 +79,7 @@ GOOGLE PLAY (opcional)
 Um PWA hospedado pode ser empacotado como app Android (TWA) com ferramentas como o PWABuilder (pwabuilder.com) a partir do endereço https do jogo. Exige conta de desenvolvedor do Google Play e o arquivo de verificação de domínio. Confirme os passos atuais no site da ferramenta antes de começar.
 
 ATUALIZAR O JOGO
-Substitua os arquivos na hospedagem e mude o número em CACHE no arquivo sw.js (por exemplo, 'capivara-golfe-v40'); assim os aparelhos pegam a versão nova.
+Substitua os arquivos na hospedagem e mude o número em CACHE no arquivo sw.js (por exemplo, 'capivara-golfe-v42'); assim os aparelhos pegam a versão nova.
 
 OBSERVAÇÕES
 - Todos os jogadores usam o mesmo aparelho, em revezamento (não há jogo online entre aparelhos nesta versão).
