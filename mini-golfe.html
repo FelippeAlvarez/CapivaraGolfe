@@ -253,6 +253,29 @@ body.playing .foot { display: none; }
 .cr-list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
 .cr-role { color: var(--muted); }
 .cr-name { font-weight: 600; text-align: left; }
+.st-bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; align-items: center; }
+.st-bar select { font: 500 14px var(--font-body); color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; min-width: 0; max-width: 100%; }
+.st-tbl { width: 100%; border-collapse: collapse; margin: 6px 0 0; font-size: 14px; }
+.st-tbl td, .st-tbl th { padding: 6px 4px; border-bottom: 1px dashed var(--line); text-align: right; vertical-align: top; }
+.st-tbl td:first-child, .st-tbl th:first-child { text-align: left; }
+.st-tbl th { font: 500 11px var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.st-tbl .st-sub { display: block; color: var(--muted); font-size: 12px; }
+.st-tbl td.st-b { background-repeat: no-repeat; background-position: left center; background-size: var(--w, 0%) 70%; background-image: linear-gradient(color-mix(in srgb, var(--accent) 22%, transparent), color-mix(in srgb, var(--accent) 22%, transparent)); }
+.st-empty { margin: 18px 0; color: var(--muted); font-size: 14px; }
+.st-note { margin: 18px 0 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+.st-hio { margin: 6px 0 0; padding: 0; list-style: none; }
+.st-hio li { padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+.st-hio .st-when { color: var(--muted); font: 500 12px var(--font-mono); display: block; }
+.tutov { position: absolute; left: 0; right: 0; bottom: 0; top: 0; z-index: 6; display: flex; align-items: flex-end; justify-content: center; padding: 8px; pointer-events: none; }
+.tutov[hidden] { display: none; }
+.tutov.modal { pointer-events: auto; background: rgba(0,0,0,.28); }
+.tutbub { pointer-events: auto; display: flex; gap: 10px; align-items: flex-start; background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 16px; padding: 10px 12px; box-shadow: 0 10px 30px -10px rgba(0,0,0,.55); max-width: 100%; font: 500 13px/1.4 var(--font-body); }
+.tutbub img { width: 44px; height: 56px; flex: none; }
+.tutx { min-width: 0; }
+.tutwho { font: 700 11px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin: 0 0 2px; }
+.tutt { margin: 0; white-space: pre-line; }
+.tutb { display: flex; gap: 8px; margin: 8px 0 0; flex-wrap: wrap; }
+.tutb .btn { padding: 6px 12px; font-size: 12px; }
 .cr-end { margin: 26px 0 8px; text-align: center; color: var(--muted); font-size: 13px; }
 @media (max-width: 420px) { .cr-list li { grid-template-columns: 1fr; gap: 0; } .cr-name { font-size: 14px; } }
 .startrow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -377,6 +400,53 @@ body.playing .res-caca { height: 84px; }
 .hp-name { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
 .hp-bubble .sub { margin: 3px 0 0; max-width: none; color: var(--fg); font-size: 14.5px; line-height: 1.45; }
 .only-m { display: none; }
+.home { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 6px 0 4px; }
+.home[hidden] { display: none; }
+body:has(#home:not([hidden])) .top { display: none; }
+/* ===== v46: HUD em cartões, ícones, ferramentas agrupadas ===== */
+.hi { width: 13px; height: 13px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; margin-right: 4px; vertical-align: -2px; }
+.nums > div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 5px 10px; }
+.nums dt { display: flex; align-items: center; }
+.ci { width: 18px; height: 18px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; margin-right: 5px; vertical-align: -4px; }
+.club[aria-checked="true"] .ci { fill: rgba(255,255,255,.22); }
+.tools { display: flex; flex-direction: column; flex-wrap: nowrap; gap: 8px; }
+.tools-act, .tools-tgl { display: flex; gap: 8px; flex-wrap: wrap; }
+.tools-act .btn { flex: 1 1 auto; min-height: 44px; }
+.btn.tgl { min-height: 36px; font-size: 13px; padding: 6px 12px; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
+.btn.tgl[aria-pressed]::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--line); flex: none; }
+.btn.tgl[aria-pressed="true"] { color: var(--fg); border-color: var(--accent); }
+.btn.tgl[aria-pressed="true"]::before { background: var(--accent); }
+.btn.tgl:disabled { opacity: .55; cursor: not-allowed; }
+.help-p { margin: 6px 0 0; font-size: 15px; line-height: 1.5; }
+.toast { top: 66px; }
+@media (max-width: 420px) { .ci { display: none; } }
+@media (min-width: 761px) and (min-height: 521px) {
+  body.playing .app { max-width: 1100px; }
+  body.playing .top { display: none; }
+  body.playing #game:not([hidden]) { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 400px); column-gap: 22px; row-gap: 12px; align-items: start; grid-template-rows: auto 1fr; }
+  body.playing .courtwrap { grid-column: 1; grid-row: 1 / span 2; }
+  body.playing .court { width: min(100%, calc((100vh - 64px) * 0.625)); }
+  body.playing .hud { grid-column: 2; grid-row: 1; flex-direction: column; align-items: stretch; }
+  body.playing .dock { grid-column: 2; grid-row: 2; }
+  body.playing .nums { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  body.playing .nums > div:nth-child(1) { grid-column: 1 / -1; }
+  body.playing .nums dd.txt { font-size: 1.05rem; }
+}
+
+.home-hero { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+.home-caca { width: min(44vw, 170px); height: auto; aspect-ratio: 200 / 260; border-radius: 28px; box-shadow: 0 14px 34px -14px rgba(0,0,0,.5); }
+.home-title { margin: 10px 0 0; font: 800 clamp(1.9rem, 7vw, 2.6rem) var(--font-display); letter-spacing: -0.02em; line-height: 1.05; }
+.home-sub { margin: 0; color: var(--muted); font-size: 16px; max-width: 26em; }
+.home-btns { display: flex; flex-direction: column; gap: 10px; width: min(100%, 380px); }
+.btn.big { width: 100%; min-height: 52px; font-size: 17px; justify-content: center; }
+.home-small { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: center; }
+.home .linkbtn { background: none; border: 0; padding: 4px; font: 600 12.5px var(--font-body); color: var(--muted); text-decoration: underline; cursor: pointer; }
+.setup-head { display: flex; align-items: center; gap: 12px; }
+.setup-title { margin: 0; font: 700 24px var(--font-display); letter-spacing: -0.01em; }
+.setup .startrow { position: sticky; bottom: 0; z-index: 3; margin: 4px -16px -16px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: linear-gradient(to bottom, transparent, var(--surface) 30%); border-radius: 0 0 var(--r, 16px) var(--r, 16px); }
+.course:not([aria-checked="true"]) .cdesc { display: none; }
+details.hint summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+details.hint p { margin: 6px 0 0; }
 .card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .club .cl { }
 @media (max-width: 560px) { .hp-logo { width: 58px; height: 75px; border-radius: 15px; } .hp { gap: 10px; } }
@@ -422,18 +492,55 @@ body.playing .res-caca { height: 84px; }
   body.playing #aimBox > .hint { display: none; }
   body.playing #result:not([hidden]) { order: 6; max-height: 26vh; overflow: auto; gap: 8px; }
   body.playing .res-title { font-size: 1.25rem; }
-  body.playing .tools { order: 7; gap: 4px; flex-wrap: wrap; }
-  body.playing .tools .btn { flex: 1 1 auto; padding: 7px 4px; font-size: 11px; white-space: nowrap; justify-content: center; min-width: 0; }
-  body.playing .toast { font-size: 12.5px; top: 8px; padding: 5px 10px; max-width: calc(100% - 16px); }
+  body.playing .tools { order: 7; gap: 5px; }
+  body.playing .tools-act { gap: 5px; flex-wrap: nowrap; }
+  body.playing .tools-tgl { gap: 5px; flex-wrap: wrap; }
+  body.playing .tools .btn { flex: 1 1 0; padding: 6px 3px; font-size: 12px; white-space: nowrap; justify-content: center; min-width: 0; }
+  body.playing .tools-act .btn { min-height: 44px; font-size: 12.5px; white-space: normal; line-height: 1.1; }
+  body.playing .tools .tools-tgl .btn { flex: 1 1 calc(33% - 5px); min-height: 34px; font-size: 11px; gap: 4px; }
+  body.playing .nums > div:nth-child(7) { padding: 2px 4px; }
+  body.playing .nums > div:nth-child(7) .hi { display: none; }
+  body.playing .nums > div { padding: 2px 7px; border-radius: 8px; }
+  body.playing .hi { width: 10px; height: 10px; margin-right: 3px; vertical-align: -1px; }
+  body.playing .toast { font-size: 12.5px; top: 62px; padding: 5px 10px; max-width: calc(100% - 16px); }
   /* cartão de pontuação como folha em tela cheia */
   body.playing #cardSec { display: none; }
   body.playing.showcard #cardSec:not([hidden]) { display: block; position: fixed; inset: 0; z-index: 30; overflow: auto; border-radius: 0; margin: 0; padding: max(12px, env(safe-area-inset-top)) 12px 24px; background: var(--surface); }
 }
 @media (max-height: 520px) and (orientation: landscape) {
-  body.playing #game:not([hidden]) { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 340px); grid-template-rows: repeat(7, auto) 1fr; column-gap: 12px; row-gap: 5px; }
-  body.playing .courtwrap { grid-column: 1; grid-row: 1 / span 8; order: 0; }
-  body.playing .hud, body.playing #aimBox > .meter, body.playing #clubs, body.playing #result, body.playing .tools { grid-column: 2; }
+  /* horizontal: painel de dados | campo | controles, ocupando toda a largura */
+  body.playing #game:not([hidden]) { display: grid; grid-template-columns: minmax(140px, 0.8fr) calc((100dvh - 20px) * 0.625) minmax(230px, 1.2fr); grid-template-rows: repeat(7, auto) 1fr; column-gap: 12px; row-gap: 5px; align-content: start; }
+  body.playing .hud { grid-column: 1; grid-row: 1 / span 8; align-self: start; }
+  body.playing .courtwrap { grid-column: 2; grid-row: 1 / span 8; order: 0; }
+  body.playing #aimBox > .meter, body.playing #clubs, body.playing #result, body.playing .tools { grid-column: 3; }
   body.playing .court { width: min(100cqw, 62.5cqh); }
+  body.playing .eyebrow { font-size: 11px; margin-bottom: 4px; }
+  body.playing .nums { grid-template-columns: 1fr 1fr; gap: 5px; }
+  body.playing .nums > div:nth-child(n) { grid-column: span 1; }
+  body.playing .nums > div:nth-child(1) { grid-column: 1 / -1; }
+  body.playing .nums > div { padding: 3px 7px; }
+  body.playing .nums > div:nth-child(7) { padding: 3px 7px; }
+  body.playing .nums > div:nth-child(7) .hi { display: inline; }
+  body.playing .nums dt { font-size: 9.5px; }
+  body.playing .nums dd { font-size: 1.1rem; }
+  body.playing .nums dd.txt { font-size: 0.95rem; }
+  body.playing #clubs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  body.playing .toast { font-size: 11.5px; max-width: calc(100% - 12px); }
+  body.playing .tools .tools-tgl .btn { flex: 1 1 calc(50% - 5px); }
+}
+@media (max-height: 520px) and (orientation: landscape) {
+  /* tela inicial em duas colunas (Cacá | botões) e barra de início mais baixa */
+  .home { display: grid; grid-template-columns: auto minmax(260px, 380px); column-gap: 32px; row-gap: 10px; justify-content: center; align-items: center; padding-top: 2px; }
+  .home-hero { grid-column: 1; grid-row: 1 / span 5; }
+  .home-btns, .home > .hint, .home-small { grid-column: 2; }
+  .home-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+  .home-btns #resumeBtn, .home-btns #resumeDel { grid-column: 1 / -1; }
+  .btn.big { min-height: 46px; font-size: 15px; }
+  .home-caca { width: 112px; }
+  .home-title { font-size: 1.7rem; margin-top: 6px; }
+  .home-sub { font-size: 14px; }
+  .setup .startrow { padding-top: 8px; padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
+  .setup .startrow .btn.big { min-height: 44px; }
 }
 
 /* ---------- editor de buracos ---------- */
@@ -505,33 +612,49 @@ body.ed-open { overflow: hidden; }
   <header class="top">
     <div class="top-in">
       <h1><img class="app-logo" alt="" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcm9sZT0iaW1nIj48dGl0bGU+Q2FwaXZhcmEgR29sZmU8L3RpdGxlPjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjQ4IiBmaWxsPSIjMWU1YWE4Ii8+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNDMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIyLjUiLz48cGF0aCBkPSJNMjIgNzhRNTAgNTYgNzggNzhaIiBmaWxsPSIjNGM4ZWU4Ii8+PGxpbmUgeDE9IjQ0IiB5MT0iMjAiIHgyPSI0NCIgeTI9IjY4IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTQ0IDIwTDcyIDMwTDQ0IDQxWiIgZmlsbD0iI2ZmZiIvPjxjaXJjbGUgY3g9IjYyIiBjeT0iNjgiIHI9IjYuNSIgZmlsbD0iI2ZmZiIvPjwvc3ZnPgo=">Capivara Golfe</h1>
-      <div class="hp">
-        <img class="hp-logo" alt="Cacá, a capivara Head Pro, de viseira e com taco de golfe" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjYwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI2MCIgcm9sZT0iaW1nIj48dGl0bGU+Q2Fjw6EgcHJvbnRhIHBhcmEgam9nYXI8L3RpdGxlPjxkZWZzPjxjbGlwUGF0aCBpZD0ic2lsIj48cGF0aCBkPSJNNzIgNDJIMTI4UTE0MCA0MiAxNDMgNTRMMTUwIDEwMEwxNTYgMTQwUTE3MCAxOTAgMTY4IDIwNVExNjYgMjM0IDEzNiAyMzRINjRRMzQgMjM0IDMyIDIwNVEzMCAxOTAgNDQgMTQwTDUwIDEwMEw1NyA1NFE2MCA0MiA3MiA0MloiLz48L2NsaXBQYXRoPjwvZGVmcz48c3R5bGU+Ci5qdW1we2FuaW1hdGlvbjpqdW1wIC41NXMgZWFzZS1pbi1vdXQgaW5maW5pdGUgYWx0ZXJuYXRlfQpAa2V5ZnJhbWVzIGp1bXB7ZnJvbXt0cmFuc2Zvcm06dHJhbnNsYXRlWSgwKX10b3t0cmFuc2Zvcm06dHJhbnNsYXRlWSgtMTZweCl9fQouZGFuY2V7dHJhbnNmb3JtLW9yaWdpbjoxMDBweCAyNDZweDthbmltYXRpb246ZGFuY2UgLjZzIGVhc2UtaW4tb3V0IGluZmluaXRlIGFsdGVybmF0ZX0KQGtleWZyYW1lcyBkYW5jZXtmcm9te3RyYW5zZm9ybTp0cmFuc2xhdGVZKDApIHJvdGF0ZSgtNmRlZyl9dG97dHJhbnNmb3JtOnRyYW5zbGF0ZVkoLTEwcHgpIHJvdGF0ZSg2ZGVnKX19Ci5hTHt0cmFuc2Zvcm0tb3JpZ2luOjU4cHggMTUycHg7YW5pbWF0aW9uOmFMIC42cyBlYXNlLWluLW91dCBpbmZpbml0ZSBhbHRlcm5hdGV9Ci5hUnt0cmFuc2Zvcm0tb3JpZ2luOjE0MnB4IDE1MnB4O2FuaW1hdGlvbjphUiAuNnMgZWFzZS1pbi1vdXQgaW5maW5pdGUgYWx0ZXJuYXRlfQpAa2V5ZnJhbWVzIGFMe2Zyb217dHJhbnNmb3JtOnJvdGF0ZSgyMGRlZyl9dG97dHJhbnNmb3JtOnJvdGF0ZSgxNDBkZWcpfX0KQGtleWZyYW1lcyBhUntmcm9te3RyYW5zZm9ybTpyb3RhdGUoLTE0MGRlZyl9dG97dHJhbnNmb3JtOnJvdGF0ZSgtMjBkZWcpfX0KLnd2e3RyYW5zZm9ybS1vcmlnaW46MTc0cHggMTAwcHg7YW5pbWF0aW9uOnd2IC4zNXMgZWFzZS1pbi1vdXQgaW5maW5pdGUgYWx0ZXJuYXRlfQpAa2V5ZnJhbWVzIHd2e2Zyb217dHJhbnNmb3JtOnJvdGF0ZSgtMTBkZWcpfXRve3RyYW5zZm9ybTpyb3RhdGUoMTBkZWcpfX0KLmNme3RyYW5zZm9ybS1ib3g6ZmlsbC1ib3g7dHJhbnNmb3JtLW9yaWdpbjpjZW50ZXI7YW5pbWF0aW9uOmZhbGwgMi40cyBsaW5lYXIgaW5maW5pdGV9CkBrZXlmcmFtZXMgZmFsbHtmcm9te3RyYW5zZm9ybTp0cmFuc2xhdGVZKC0zMHB4KSByb3RhdGUoMCl9dG97dHJhbnNmb3JtOnRyYW5zbGF0ZVkoMjkwcHgpIHJvdGF0ZSgzNjBkZWcpfX0KLnR3e2FuaW1hdGlvbjp0dyAuOXMgZWFzZS1pbi1vdXQgaW5maW5pdGV9CkBrZXlmcmFtZXMgdHd7MCUsMTAwJXtvcGFjaXR5Oi4yfTUwJXtvcGFjaXR5OjF9fQoubnR7dHJhbnNmb3JtLWJveDpmaWxsLWJveDt0cmFuc2Zvcm0tb3JpZ2luOmNlbnRlcjthbmltYXRpb246bnQgMS44cyBlYXNlLW91dCBpbmZpbml0ZX0KQGtleWZyYW1lcyBudHswJXt0cmFuc2Zvcm06dHJhbnNsYXRlWSgwKTtvcGFjaXR5OjB9MjAle29wYWNpdHk6MX0xMDAle3RyYW5zZm9ybTp0cmFuc2xhdGVZKC01MHB4KTtvcGFjaXR5OjB9fQpAbWVkaWEgKHByZWZlcnMtcmVkdWNlZC1tb3Rpb246cmVkdWNlKXsuanVtcCwuZGFuY2UsLmFMLC5hUiwud3YsLmNmLC50dywubnR7YW5pbWF0aW9uOm5vbmV9fQo8L3N0eWxlPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjYwIiBmaWxsPSIjZTZmMWRjIi8+PGVsbGlwc2UgY3g9IjEwMCIgY3k9IjI1MiIgcng9IjEwMCIgcnk9IjE2IiBmaWxsPSIjYjlkOTlhIi8+PGcgaWQ9ImNhY2EtY29ycG8iPgo8cmVjdCB4PSI2MiIgeT0iMjI0IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSIxMiIgZmlsbD0iIzhhNWIzMiIvPjxyZWN0IHg9IjExMCIgeT0iMjI0IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSIxMiIgZmlsbD0iIzhhNWIzMiIvPgo8ZWxsaXBzZSBjeD0iNzYiIGN5PSIyNDciIHJ4PSIyMSIgcnk9IjEwIiBmaWxsPSIjNmU0NjI2Ii8+PGVsbGlwc2UgY3g9IjEyNCIgY3k9IjI0NyIgcng9IjIxIiByeT0iMTAiIGZpbGw9IiM2ZTQ2MjYiLz4KPHBhdGggZD0iTTcyIDQySDEyOFExNDAgNDIgMTQzIDU0TDE1MCAxMDBMMTU2IDE0MFExNzAgMTkwIDE2OCAyMDVRMTY2IDIzNCAxMzYgMjM0SDY0UTM0IDIzNCAzMiAyMDVRMzAgMTkwIDQ0IDE0MEw1MCAxMDBMNTcgNTRRNjAgNDIgNzIgNDJaIiBmaWxsPSIjOWE2YjNmIi8+CjxwYXRoIGQ9Ik0zMCAxMjhRMTAwIDE1NiAxNzAgMTI4VjI1MEgzMFoiIGZpbGw9IiNmZmZmZmYiIGNsaXAtcGF0aD0idXJsKCNzaWwpIi8+CjxwYXRoIGQ9Ik05MCAxNDJIMTEwTDEwMCAxNjRaIiBmaWxsPSIjOWE2YjNmIi8+CjxwYXRoIGQ9Ik02NCAxMzhRNzggMTQyIDkwIDE0MkwxMDAgMTY0TDgwIDE1NFoiIGZpbGw9IiMxZTVhYTgiLz48cGF0aCBkPSJNMTM2IDEzOFExMjIgMTQyIDExMCAxNDJMMTAwIDE2NEwxMjAgMTU0WiIgZmlsbD0iIzFlNWFhOCIvPgo8Y2lyY2xlIGN4PSIxMzIiIGN5PSIxODIiIHI9IjciIGZpbGw9IiMxZTVhYTgiLz48Y2lyY2xlIGN4PSIxMzIiIGN5PSIxODIiIHI9IjMiIGZpbGw9IiNmZmZmZmYiLz4KPHJlY3QgeD0iNDQiIHk9IjYwIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHJ4PSI1IiBmaWxsPSIjOGE1YjMyIi8+PHJlY3QgeD0iMTQxIiB5PSI2MCIgd2lkdGg9IjE1IiBoZWlnaHQ9IjE1IiByeD0iNSIgZmlsbD0iIzhhNWIzMiIvPgo8cmVjdCB4PSI0OCIgeT0iNjMiIHdpZHRoPSI3IiBoZWlnaHQ9IjgiIHJ4PSIzIiBmaWxsPSIjNWEzODIwIi8+PHJlY3QgeD0iMTQ1IiB5PSI2MyIgd2lkdGg9IjciIGhlaWdodD0iOCIgcng9IjMiIGZpbGw9IiM1YTM4MjAiLz4KPHJlY3QgeD0iNjAiIHk9Ijg2IiB3aWR0aD0iODAiIGhlaWdodD0iNDAiIHJ4PSIxNiIgZmlsbD0iI2I4ODQ1NSIvPgo8cmVjdCB4PSI3NiIgeT0iODgiIHdpZHRoPSI0OCIgaGVpZ2h0PSIxNCIgcng9IjciIGZpbGw9IiMzYjI0MTYiLz4KPGVsbGlwc2UgY3g9IjkwIiBjeT0iOTUiIHJ4PSI0IiByeT0iMi40IiBmaWxsPSIjMWQxMjBhIi8+PGVsbGlwc2UgY3g9IjExMCIgY3k9Ijk1IiByeD0iNCIgcnk9IjIuNCIgZmlsbD0iIzFkMTIwYSIvPgo8Y2lyY2xlIGN4PSI3MCIgY3k9IjgwIiByPSI1LjUiIGZpbGw9IiMxZDEyMGEiLz48Y2lyY2xlIGN4PSIxMzAiIGN5PSI4MCIgcj0iNS41IiBmaWxsPSIjMWQxMjBhIi8+CjxjaXJjbGUgY3g9IjcxLjYiIGN5PSI3OCIgcj0iMS44IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTMxLjYiIGN5PSI3OCIgcj0iMS44IiBmaWxsPSIjZmZmIi8+CjxwYXRoIGQ9Ik01NiA1MEgxNDRMMTQ3IDY0SDUzWiIgZmlsbD0iIzFlNWFhOCIvPgo8cGF0aCBkPSJNNTAgNjNRMTAwIDg2IDE1MCA2M0wxNDcgNTlINTNaIiBmaWxsPSIjMTQzZjc4Ii8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9IjU3IiByPSI0LjUiIGZpbGw9IiNmZmYiLz4KPC9nPjxwYXRoIGQ9Ik05MCAxMTRRMTAwIDEyMCAxMTAgMTE0IiBmaWxsPSJub25lIiBzdHJva2U9IiMzYjI0MTYiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48bGluZSB4MT0iMTU4IiB5MT0iMTUyIiB4Mj0iMTU4IiB5Mj0iMjQ0IiBzdHJva2U9IiM4YzkzOWIiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIxNTgiIHkxPSIxNjgiIHgyPSIxNTgiIHkyPSIxOTQiIHN0cm9rZT0iIzE0M2Y3OCIgc3Ryb2tlLXdpZHRoPSI2Ii8+PHBhdGggZD0iTTE1OCAyNDRMMTg0IDI0MEwxODQgMjQ5TDE1OCAyNTFaIiBmaWxsPSIjNmI3NDgwIi8+PHBhdGggZD0iTTYwIDE1MlEzOCAxODIgNjIgMjA2IiBmaWxsPSJub25lIiBzdHJva2U9IiM5YTZiM2YiIHN0cm9rZS13aWR0aD0iMTYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxjaXJjbGUgY3g9IjYyIiBjeT0iMjA2IiByPSI5IiBmaWxsPSIjOWE2YjNmIi8+PHBhdGggZD0iTTE0MCAxNTJRMTU4IDE2OCAxNTggMTg2IiBmaWxsPSJub25lIiBzdHJva2U9IiM5YTZiM2YiIHN0cm9rZS13aWR0aD0iMTYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxjaXJjbGUgY3g9IjE1OCIgY3k9IjE4NiIgcj0iMTAiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2I5YzlkZSIvPjwvc3ZnPgo=">
-        <div class="hp-bubble">
-          <div class="hp-name">Cacá · Head Pro</div>
-          <p class="sub">Olá, jogador! Eu sou a Cacá, a Head Pro, a capivara que cuida deste campo. Aqui você joga com até 4 pessoas, de 18, 9 ou 3 buracos, em stroke play, match play ou Stableford. Escolha o campo e quem vai jogar. Para tacar, é só tocar na tela e puxar o dedo para trás, como num estilingue: esse é o <b>backswing</b>, e quanto mais você puxa, mais força a tacada tem. Depois vem o <b>downswing</b>: o marcador corre pela barra de precisão e você toca na tela para pará-lo dentro da faixa verde. Acertou o verde, acertou a tacada. Bom jogo!</p>
-        </div>
       </div>
-    </div>
   </header>
 
+  <section class="home" id="home" aria-label="Início">
+    <div class="home-hero">
+      <img class="home-caca" alt="Cacá, a capivara Head Pro, de viseira e com taco de golfe" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjYwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI2MCIgcm9sZT0iaW1nIj48dGl0bGU+Q2Fjw6EgcHJvbnRhIHBhcmEgam9nYXI8L3RpdGxlPjxkZWZzPjxjbGlwUGF0aCBpZD0ic2lsIj48cGF0aCBkPSJNNzIgNDJIMTI4UTE0MCA0MiAxNDMgNTRMMTUwIDEwMEwxNTYgMTQwUTE3MCAxOTAgMTY4IDIwNVExNjYgMjM0IDEzNiAyMzRINjRRMzQgMjM0IDMyIDIwNVEzMCAxOTAgNDQgMTQwTDUwIDEwMEw1NyA1NFE2MCA0MiA3MiA0MloiLz48L2NsaXBQYXRoPjwvZGVmcz48c3R5bGU+Ci5qdW1we2FuaW1hdGlvbjpqdW1wIC41NXMgZWFzZS1pbi1vdXQgaW5maW5pdGUgYWx0ZXJuYXRlfQpAa2V5ZnJhbWVzIGp1bXB7ZnJvbXt0cmFuc2Zvcm06dHJhbnNsYXRlWSgwKX10b3t0cmFuc2Zvcm06dHJhbnNsYXRlWSgtMTZweCl9fQouZGFuY2V7dHJhbnNmb3JtLW9yaWdpbjoxMDBweCAyNDZweDthbmltYXRpb246ZGFuY2UgLjZzIGVhc2UtaW4tb3V0IGluZmluaXRlIGFsdGVybmF0ZX0KQGtleWZyYW1lcyBkYW5jZXtmcm9te3RyYW5zZm9ybTp0cmFuc2xhdGVZKDApIHJvdGF0ZSgtNmRlZyl9dG97dHJhbnNmb3JtOnRyYW5zbGF0ZVkoLTEwcHgpIHJvdGF0ZSg2ZGVnKX19Ci5hTHt0cmFuc2Zvcm0tb3JpZ2luOjU4cHggMTUycHg7YW5pbWF0aW9uOmFMIC42cyBlYXNlLWluLW91dCBpbmZpbml0ZSBhbHRlcm5hdGV9Ci5hUnt0cmFuc2Zvcm0tb3JpZ2luOjE0MnB4IDE1MnB4O2FuaW1hdGlvbjphUiAuNnMgZWFzZS1pbi1vdXQgaW5maW5pdGUgYWx0ZXJuYXRlfQpAa2V5ZnJhbWVzIGFMe2Zyb217dHJhbnNmb3JtOnJvdGF0ZSgyMGRlZyl9dG97dHJhbnNmb3JtOnJvdGF0ZSgxNDBkZWcpfX0KQGtleWZyYW1lcyBhUntmcm9te3RyYW5zZm9ybTpyb3RhdGUoLTE0MGRlZyl9dG97dHJhbnNmb3JtOnJvdGF0ZSgtMjBkZWcpfX0KLnd2e3RyYW5zZm9ybS1vcmlnaW46MTc0cHggMTAwcHg7YW5pbWF0aW9uOnd2IC4zNXMgZWFzZS1pbi1vdXQgaW5maW5pdGUgYWx0ZXJuYXRlfQpAa2V5ZnJhbWVzIHd2e2Zyb217dHJhbnNmb3JtOnJvdGF0ZSgtMTBkZWcpfXRve3RyYW5zZm9ybTpyb3RhdGUoMTBkZWcpfX0KLmNme3RyYW5zZm9ybS1ib3g6ZmlsbC1ib3g7dHJhbnNmb3JtLW9yaWdpbjpjZW50ZXI7YW5pbWF0aW9uOmZhbGwgMi40cyBsaW5lYXIgaW5maW5pdGV9CkBrZXlmcmFtZXMgZmFsbHtmcm9te3RyYW5zZm9ybTp0cmFuc2xhdGVZKC0zMHB4KSByb3RhdGUoMCl9dG97dHJhbnNmb3JtOnRyYW5zbGF0ZVkoMjkwcHgpIHJvdGF0ZSgzNjBkZWcpfX0KLnR3e2FuaW1hdGlvbjp0dyAuOXMgZWFzZS1pbi1vdXQgaW5maW5pdGV9CkBrZXlmcmFtZXMgdHd7MCUsMTAwJXtvcGFjaXR5Oi4yfTUwJXtvcGFjaXR5OjF9fQoubnR7dHJhbnNmb3JtLWJveDpmaWxsLWJveDt0cmFuc2Zvcm0tb3JpZ2luOmNlbnRlcjthbmltYXRpb246bnQgMS44cyBlYXNlLW91dCBpbmZpbml0ZX0KQGtleWZyYW1lcyBudHswJXt0cmFuc2Zvcm06dHJhbnNsYXRlWSgwKTtvcGFjaXR5OjB9MjAle29wYWNpdHk6MX0xMDAle3RyYW5zZm9ybTp0cmFuc2xhdGVZKC01MHB4KTtvcGFjaXR5OjB9fQpAbWVkaWEgKHByZWZlcnMtcmVkdWNlZC1tb3Rpb246cmVkdWNlKXsuanVtcCwuZGFuY2UsLmFMLC5hUiwud3YsLmNmLC50dywubnR7YW5pbWF0aW9uOm5vbmV9fQo8L3N0eWxlPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjYwIiBmaWxsPSIjZTZmMWRjIi8+PGVsbGlwc2UgY3g9IjEwMCIgY3k9IjI1MiIgcng9IjEwMCIgcnk9IjE2IiBmaWxsPSIjYjlkOTlhIi8+PGcgaWQ9ImNhY2EtY29ycG8iPgo8cmVjdCB4PSI2MiIgeT0iMjI0IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSIxMiIgZmlsbD0iIzhhNWIzMiIvPjxyZWN0IHg9IjExMCIgeT0iMjI0IiB3aWR0aD0iMjgiIGhlaWdodD0iMjQiIHJ4PSIxMiIgZmlsbD0iIzhhNWIzMiIvPgo8ZWxsaXBzZSBjeD0iNzYiIGN5PSIyNDciIHJ4PSIyMSIgcnk9IjEwIiBmaWxsPSIjNmU0NjI2Ii8+PGVsbGlwc2UgY3g9IjEyNCIgY3k9IjI0NyIgcng9IjIxIiByeT0iMTAiIGZpbGw9IiM2ZTQ2MjYiLz4KPHBhdGggZD0iTTcyIDQySDEyOFExNDAgNDIgMTQzIDU0TDE1MCAxMDBMMTU2IDE0MFExNzAgMTkwIDE2OCAyMDVRMTY2IDIzNCAxMzYgMjM0SDY0UTM0IDIzNCAzMiAyMDVRMzAgMTkwIDQ0IDE0MEw1MCAxMDBMNTcgNTRRNjAgNDIgNzIgNDJaIiBmaWxsPSIjOWE2YjNmIi8+CjxwYXRoIGQ9Ik0zMCAxMjhRMTAwIDE1NiAxNzAgMTI4VjI1MEgzMFoiIGZpbGw9IiNmZmZmZmYiIGNsaXAtcGF0aD0idXJsKCNzaWwpIi8+CjxwYXRoIGQ9Ik05MCAxNDJIMTEwTDEwMCAxNjRaIiBmaWxsPSIjOWE2YjNmIi8+CjxwYXRoIGQ9Ik02NCAxMzhRNzggMTQyIDkwIDE0MkwxMDAgMTY0TDgwIDE1NFoiIGZpbGw9IiMxZTVhYTgiLz48cGF0aCBkPSJNMTM2IDEzOFExMjIgMTQyIDExMCAxNDJMMTAwIDE2NEwxMjAgMTU0WiIgZmlsbD0iIzFlNWFhOCIvPgo8Y2lyY2xlIGN4PSIxMzIiIGN5PSIxODIiIHI9IjciIGZpbGw9IiMxZTVhYTgiLz48Y2lyY2xlIGN4PSIxMzIiIGN5PSIxODIiIHI9IjMiIGZpbGw9IiNmZmZmZmYiLz4KPHJlY3QgeD0iNDQiIHk9IjYwIiB3aWR0aD0iMTUiIGhlaWdodD0iMTUiIHJ4PSI1IiBmaWxsPSIjOGE1YjMyIi8+PHJlY3QgeD0iMTQxIiB5PSI2MCIgd2lkdGg9IjE1IiBoZWlnaHQ9IjE1IiByeD0iNSIgZmlsbD0iIzhhNWIzMiIvPgo8cmVjdCB4PSI0OCIgeT0iNjMiIHdpZHRoPSI3IiBoZWlnaHQ9IjgiIHJ4PSIzIiBmaWxsPSIjNWEzODIwIi8+PHJlY3QgeD0iMTQ1IiB5PSI2MyIgd2lkdGg9IjciIGhlaWdodD0iOCIgcng9IjMiIGZpbGw9IiM1YTM4MjAiLz4KPHJlY3QgeD0iNjAiIHk9Ijg2IiB3aWR0aD0iODAiIGhlaWdodD0iNDAiIHJ4PSIxNiIgZmlsbD0iI2I4ODQ1NSIvPgo8cmVjdCB4PSI3NiIgeT0iODgiIHdpZHRoPSI0OCIgaGVpZ2h0PSIxNCIgcng9IjciIGZpbGw9IiMzYjI0MTYiLz4KPGVsbGlwc2UgY3g9IjkwIiBjeT0iOTUiIHJ4PSI0IiByeT0iMi40IiBmaWxsPSIjMWQxMjBhIi8+PGVsbGlwc2UgY3g9IjExMCIgY3k9Ijk1IiByeD0iNCIgcnk9IjIuNCIgZmlsbD0iIzFkMTIwYSIvPgo8Y2lyY2xlIGN4PSI3MCIgY3k9IjgwIiByPSI1LjUiIGZpbGw9IiMxZDEyMGEiLz48Y2lyY2xlIGN4PSIxMzAiIGN5PSI4MCIgcj0iNS41IiBmaWxsPSIjMWQxMjBhIi8+CjxjaXJjbGUgY3g9IjcxLjYiIGN5PSI3OCIgcj0iMS44IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTMxLjYiIGN5PSI3OCIgcj0iMS44IiBmaWxsPSIjZmZmIi8+CjxwYXRoIGQ9Ik01NiA1MEgxNDRMMTQ3IDY0SDUzWiIgZmlsbD0iIzFlNWFhOCIvPgo8cGF0aCBkPSJNNTAgNjNRMTAwIDg2IDE1MCA2M0wxNDcgNTlINTNaIiBmaWxsPSIjMTQzZjc4Ii8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9IjU3IiByPSI0LjUiIGZpbGw9IiNmZmYiLz4KPC9nPjxwYXRoIGQ9Ik05MCAxMTRRMTAwIDEyMCAxMTAgMTE0IiBmaWxsPSJub25lIiBzdHJva2U9IiMzYjI0MTYiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48bGluZSB4MT0iMTU4IiB5MT0iMTUyIiB4Mj0iMTU4IiB5Mj0iMjQ0IiBzdHJva2U9IiM4YzkzOWIiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIxNTgiIHkxPSIxNjgiIHgyPSIxNTgiIHkyPSIxOTQiIHN0cm9rZT0iIzE0M2Y3OCIgc3Ryb2tlLXdpZHRoPSI2Ii8+PHBhdGggZD0iTTE1OCAyNDRMMTg0IDI0MEwxODQgMjQ5TDE1OCAyNTFaIiBmaWxsPSIjNmI3NDgwIi8+PHBhdGggZD0iTTYwIDE1MlEzOCAxODIgNjIgMjA2IiBmaWxsPSJub25lIiBzdHJva2U9IiM5YTZiM2YiIHN0cm9rZS13aWR0aD0iMTYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxjaXJjbGUgY3g9IjYyIiBjeT0iMjA2IiByPSI5IiBmaWxsPSIjOWE2YjNmIi8+PHBhdGggZD0iTTE0MCAxNTJRMTU4IDE2OCAxNTggMTg2IiBmaWxsPSJub25lIiBzdHJva2U9IiM5YTZiM2YiIHN0cm9rZS13aWR0aD0iMTYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxjaXJjbGUgY3g9IjE1OCIgY3k9IjE4NiIgcj0iMTAiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2I5YzlkZSIvPjwvc3ZnPgo=">
+      <h2 class="home-title">Capivara Golfe</h2>
+      <p class="home-sub">Oi! Eu sou a Cacá, a Head Pro. Bora jogar um golfe?</p>
+    </div>
+    <div class="home-btns">
+      <button class="btn primary big" id="resumeBtn" type="button" hidden>Continuar jogo salvo</button>
+      <button class="btn big" id="resumeDel" type="button" hidden>Descartar jogo salvo</button>
+      <button class="btn big" id="homeTut" type="button">Tutorial com a Cacá</button>
+      <button class="btn primary big" id="homePlay" type="button">Jogar</button>
+      <button class="btn big" id="statsBtn" type="button">Estatísticas</button>
+      <button class="btn big" id="homeCred" type="button" aria-haspopup="dialog">Créditos</button>
+    </div>
+    <p class="hint" id="resumeHint" hidden></p>
+    <div class="home-small">
+      <button class="btn" id="installBtn" type="button" hidden>Instalar o app</button>
+      <button class="btn" id="fsBtn" type="button" hidden>Tela cheia</button>
+      <button class="linkbtn" id="editBtn" type="button">Editor de buracos (desenvolvedor)</button>
+    </div>
+    <p class="hint" id="installHint" hidden></p>
+  </section>
+
   <section class="card setup" id="setup" aria-label="Jogadores">
+    <div class="setup-head"><button class="btn" id="setupBack" type="button">&larr; Início</button><h2 class="setup-title">Jogar</h2></div>
     <h3>Campo</h3>
     <p class="hint">Primeiro, escolha onde vamos jogar.</p>
     <div class="courses" id="courses" role="radiogroup" aria-label="Campo"></div>
     <h3>Jogadores</h3>
     <div class="row"><span class="lab">Quantos jogam</span><div class="seg" id="segN" role="radiogroup" aria-label="Número de jogadores"></div></div>
     <div class="names" id="names"></div>
-    <p class="hint">Todo mundo joga neste aparelho, revezando. No tee, sai primeiro quem fez menos tacadas no buraco anterior (é a honra); depois joga quem estiver mais longe da bandeira. Deixou o nome em branco? Eu resolvo: humano vira "Jogador N" e as IAs ganham um nome sorteado. Quer companhia? Escolha o nível da IA ao lado do nome: Iniciante, Intermediário ou Pro.</p>
+    <p class="hint">Todos jogam neste aparelho, revezando. Nome em branco: humano vira "Jogador N" e as IAs ganham um nome sorteado. O nível da IA (Iniciante, Intermediário ou Pro) fica ao lado do nome.</p>
+    <details class="hint"><summary>Como é a ordem de jogo</summary><p>Todo mundo joga neste aparelho, revezando. No tee, sai primeiro quem fez menos tacadas no buraco anterior (é a honra); depois joga quem estiver mais longe da bandeira. Deixou o nome em branco? Eu resolvo: humano vira "Jogador N" e as IAs ganham um nome sorteado. Quer companhia? Escolha o nível da IA ao lado do nome: Iniciante, Intermediário ou Pro.</p></details>
     <h3>Partida</h3>
     <div class="row"><span class="lab">Formato</span><div class="seg" id="segF" role="radiogroup" aria-label="Formato da partida"></div></div>
     <div class="row" id="halfRow"><span class="lab">Metade</span><div class="seg" id="segH" role="radiogroup" aria-label="Ida ou volta"></div></div>
     <p class="hint" id="fmtHint"></p>
     <div class="row"><span class="lab">Modo de jogo</span><div class="seg" id="segM" role="radiogroup" aria-label="Modo de jogo"></div></div>
     <p class="hint" id="modeHint"></p>
-    <div class="startrow"><button class="btn primary" id="startBtn" type="button">Iniciar partida</button> <button class="btn" id="installBtn" type="button" hidden>Instalar o app</button> <button class="btn" id="fsBtn" type="button" hidden>Tela cheia</button> <button class="btn" id="editBtn" type="button">Editor de buracos</button> <button class="btn primary" id="resumeBtn" type="button" hidden>Continuar jogo salvo</button> <button class="btn" id="resumeDel" type="button" hidden>Descartar salvo</button></div>
-    <p class="hint" id="resumeHint" hidden></p>
-    <p class="hint" id="installHint" hidden></p>
+    <div class="startrow"><button class="btn primary big" id="startBtn" type="button">Iniciar partida</button></div>
   </section>
 
   <section id="game" aria-label="Jogo" hidden>
@@ -541,19 +664,20 @@ body.ed-open { overflow: hidden; }
         <h2 id="hName">Buraco 1</h2>
       </div>
       <dl class="nums">
-        <div><dt>Vez de</dt><dd id="hWho" class="txt"></dd></div>
-        <div><dt>Par</dt><dd id="hPar">4</dd></div>
-        <div><dt>Distância</dt><dd id="hLen" class="txt">0 jd</dd></div>
-        <div><dt>Tacadas</dt><dd id="hStr">0</dd></div>
-        <div><dt>Bandeira</dt><dd id="hPin" class="txt">0 jd</dd></div>
-        <div><dt>Vento</dt><dd id="hWind" class="txt"></dd></div>
-        <div><dt>Terreno</dt><dd id="hLie" class="txt">Tee</dd></div>
+        <div><dt><svg class="hi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1-4 4-5.5 7-5.5s6 1.5 7 5.5"/></svg>Vez de</dt><dd id="hWho" class="txt"></dd></div>
+        <div><dt><svg class="hi" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 3.5L16 11H5"/></svg>Par</dt><dd id="hPar">4</dd></div>
+        <div><dt><svg class="hi" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4"/></svg>Distância</dt><dd id="hLen" class="txt">0 jd</dd></div>
+        <div><dt><svg class="hi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M9 10h.01M12 9h.01M15 10h.01M10.5 13h.01M13.5 13h.01"/></svg>Tacadas</dt><dd id="hStr">0</dd></div>
+        <div><dt><svg class="hi" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>Bandeira</dt><dd id="hPin" class="txt">0 jd</dd></div>
+        <div><dt><svg class="hi" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h16a3 3 0 1 1-3 3M3 16h7"/></svg>Vento</dt><dd id="hWind" class="txt"></dd></div>
+        <div><dt><svg class="hi" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19l6-10 4 6 3-4 5 8z"/></svg>Terreno</dt><dd id="hLie" class="txt">Tee</dd></div>
       </dl>
     </div>
 
     <div class="courtwrap" id="courtwrap"><div class="court" id="court">
       <canvas id="cv" tabindex="0" aria-label="Campo de golfe visto de cima. Arraste para trás e solte para tacar. Pelo teclado: setas para mirar e ajustar a força, Enter para tacar, teclas 1 a 5 para trocar de taco."></canvas>
       <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      <div class="tutov" id="tutOv" hidden><div class="tutbub" role="dialog" aria-label="Cacá explica"><img id="tutImg" alt="Cacá"><div class="tutx"><p class="tutwho">Cacá</p><p class="tutt" id="tutTxt"></p><div class="tutb"><button class="btn primary" id="tutOk" type="button">Entendi</button><button class="btn" id="tutSkip" type="button" hidden>Pular tutorial</button></div></div></div></div>
     </div></div>
 
     <div class="dock">
@@ -561,7 +685,6 @@ body.ed-open { overflow: hidden; }
         <div class="clubs" id="clubs" role="radiogroup" aria-label="Taco"></div>
         <div class="meter"><span class="lab">Força</span><div class="track"><div class="fill" id="fill"></div></div><span class="read" id="read">0%</span></div>
         <div class="meter" id="accRow" hidden><span class="lab">Precisão</span><div class="acc" id="acc"><div class="azone" id="azone"></div><div class="amk" id="amk"></div></div><span class="read" id="accRead">toque p/ parar</span></div>
-        <p class="hint">Dica da Cacá: toque em qualquer lugar do campo e puxe para trás, como num estilingue (é o backswing; a bola não precisa estar sob o dedo) e solte. Aí começa o downswing: toque na tela quando o marcador estiver na faixa verde da barra de precisão. Desistiu? Volte o dedo ao ponto de partida (a linha some) e solte: não conta como tacada e dá para trocar de taco. Ao soltar, um marcador de precisão percorre a barra (quanto mais força, mais rápido): toque (ou Espaço) quando ele estiver na zona verde. Errar o tempo causa slice (curva para a direita) ou hook (para a esquerda); se deixar o marcador chegar ao fim, a tacada sai ruim (topada, toe, heel ou shank) e a bola anda poucas jardas. Rough e areia estreitam a faixa verde. Teclado: setas para mirar e dar força, Enter para tacar, 1 a 5 para trocar de taco. Driver só no tee; no bunker só ferro ou wedge. Areia corta pelo menos 50% da distância e o rough 20%. O anel mostra onde a bola toca o chão. As distâncias são em jardas; a dos tacos é a do voo. No green, as setas mostram a inclinação: a bola rola no sentido delas. Água e fora do campo (OB) custam +1 tacada, jogando de novo do mesmo ponto. O limite é par + 4 tacadas por buraco. Vento: força e sentido (para onde sopra; o Norte é marcado com "N" na bússola, e o tee fica embaixo e o green no alto) ficam no painel e no canto do campo, e mudam a cada buraco. Só age em bolas no ar, mais quanto mais alta a bola e mais tempo no ar; o putter não sofre vento, e o anel de alcance não o considera. Relevo: o green é mais alto que o entorno, então bolas que o erram escorregam para fora; a água fica abaixo do campo e puxa bolas próximas; os bunkers têm bordas (mais altas do lado do green) que barram bolas rolando, mas não puxam para dentro. Árvores: folhosas (copa no ar), arbustos (a bola entra e para), palmeiras (só o tronco bate) e pinheiros (cone).</p>
       </div>
       <div class="state res-wrap" id="result" hidden>
         <img class="res-caca" id="resCaca" alt="Cacá comemorando" hidden>
@@ -572,14 +695,20 @@ body.ed-open { overflow: hidden; }
         <button class="btn primary" id="nextBtn" type="button">Próximo buraco</button>
       </div>
       <div class="tools">
-        <button class="btn" id="muteBtn" type="button" aria-pressed="false">Som: sim</button>
-        <button class="btn" id="precBtn" type="button" aria-pressed="true">Precisão: sim</button>
-        <button class="btn" id="aiBtn" type="button" aria-pressed="false" hidden>IA rápida: não</button>
-        <button class="btn only-m" id="cardBtn" type="button">Cartão</button>
-        <button class="btn" id="giveBtn" type="button" hidden>Desistir do buraco</button>
-        <button class="btn" id="saveBtn" type="button" hidden>Salvar jogo</button>
-        <button class="btn" id="newBtn" type="button">Novo jogo</button>
-        <button class="btn primary" id="edBackBtn" type="button" hidden>Voltar ao editor</button>
+        <div class="tools-act">
+          <button class="btn" id="giveBtn" type="button" hidden>Desistir do buraco</button>
+          <button class="btn" id="saveBtn" type="button" hidden>Salvar jogo</button>
+          <button class="btn only-m" id="cardBtn" type="button">Cartão</button>
+          <button class="btn" id="newBtn" type="button">Novo jogo</button>
+          <button class="btn primary" id="edBackBtn" type="button" hidden>Voltar ao editor</button>
+        </div>
+        <div class="tools-tgl">
+          <button class="btn tgl" id="muteBtn" type="button" aria-pressed="false">Som: sim</button>
+          <button class="btn tgl" id="precBtn" type="button" aria-pressed="true">Precisão: sim</button>
+          <button class="btn tgl" id="dicasBtn" type="button" aria-pressed="false">Dicas da Cacá: não</button>
+          <button class="btn tgl" id="aiBtn" type="button" aria-pressed="false" hidden>IA rápida: não</button>
+          <button class="btn tgl" id="helpBtn" type="button" aria-haspopup="dialog">Como jogar</button>
+        </div>
       </div>
     </div>
   </section>
@@ -592,9 +721,19 @@ body.ed-open { overflow: hidden; }
   <footer class="foot" id="foot">
     <p>&copy; 2026 Felippe Alvarez de Sá. Todos os direitos reservados.</p>
     <p>Capivara Golfe, o código, os textos, a personagem Cacá e a logo são obras protegidas pela legislação brasileira de direitos autorais (Lei nº 9.610/1998) e de programas de computador (Lei nº 9.609/1998). É proibida a reprodução, a distribuição ou a venda sem autorização prévia e por escrito do titular.</p>
-    <p><button class="linkbtn" id="creditsBtn" type="button" aria-haspopup="dialog">Créditos</button></p>
   </footer>
 </main>
+
+<div class="credits" id="stats" role="dialog" aria-modal="true" aria-labelledby="stTitle" hidden>
+  <div class="cr-in" id="statsIn"></div>
+</div>
+<div class="credits" id="helpOv" role="dialog" aria-modal="true" aria-labelledby="helpTitle" hidden>
+  <div class="cr-in">
+    <div class="cr-head"><h2 id="helpTitle">Como jogar</h2><button class="btn" id="helpClose" type="button">Fechar</button></div>
+    <p class="cr-sub">Dicas da Cacá para a tacada, o terreno e o vento.</p>
+    <h3 class="cr-grp">Como tacar</h3><p class="help-p">toque em qualquer lugar do campo e puxe para trás, como num estilingue (é o backswing; a bola não precisa estar sob o dedo) e solte. Aí começa o downswing: toque na tela quando o marcador estiver na faixa verde da barra de precisão. Desistiu? Volte o dedo ao ponto de partida (a linha some) e solte: não conta como tacada e dá para trocar de taco.</p><h3 class="cr-grp">Precisão e erros</h3><p class="help-p">Ao soltar, um marcador de precisão percorre a barra (quanto mais força, mais rápido): toque (ou Espaço) quando ele estiver na zona verde. Errar o tempo causa slice (curva para a direita) ou hook (para a esquerda); se deixar o marcador chegar ao fim, a tacada sai ruim (topada, toe, heel ou shank) e a bola anda poucas jardas.</p><h3 class="cr-grp">Tacos e terreno</h3><p class="help-p">Rough e areia estreitam a faixa verde.</p><p class="help-p">Driver só no tee; no bunker só ferro ou wedge. Areia corta pelo menos 50% da distância e o rough 20%. O anel mostra onde a bola toca o chão. As distâncias são em jardas; a dos tacos é a do voo.</p><h3 class="cr-grp">Green e penalidades</h3><p class="help-p">No green, as setas mostram a inclinação: a bola rola no sentido delas. Água e fora do campo (OB) custam +1 tacada, jogando de novo do mesmo ponto. O limite é par + 4 tacadas por buraco.</p><h3 class="cr-grp">Vento e relevo</h3><p class="help-p">Vento: força e sentido (para onde sopra; o Norte é marcado com "N" na bússola, e o tee fica embaixo e o green no alto) ficam no painel e no canto do campo, e mudam a cada buraco. Só age em bolas no ar, mais quanto mais alta a bola e mais tempo no ar; o putter não sofre vento, e o anel de alcance não o considera. Relevo: o green é mais alto que o entorno, então bolas que o erram escorregam para fora; a água fica abaixo do campo e puxa bolas próximas; os bunkers têm bordas (mais altas do lado do green) que barram bolas rolando, mas não puxam para dentro.</p><h3 class="cr-grp">Árvores</h3><p class="help-p">Árvores: folhosas (copa no ar), arbustos (a bola entra e para), palmeiras (só o tronco bate) e pinheiros (cone).</p><h3 class="cr-grp">Teclado</h3><p class="help-p">Teclado: setas para mirar e dar força, Enter para tacar, 1 a 5 para trocar de taco.</p>
+  </div>
+</div>
 
 <div class="credits" id="credits" role="dialog" aria-modal="true" aria-labelledby="crTitle" hidden>
   <div class="cr-in">
@@ -805,6 +944,13 @@ body.ed-open { overflow: hidden; }
         { par: 4, yds: 368, g: 365, t: { straight: 1, sideBk: 1, treesLine: 1, v: 2 } }  // 27: par 4 final, longo e imponente
       ],
       water: [],                                       // sem água no cartão
+    },
+    {
+      // buraco fictício, só do tutorial da Cacá (não aparece na seleção de campos, no editor nem nas estatísticas)
+      id: 'tutorial', name: 'Tutorial da Cacá', hidden: true, seed: 8101,
+      desc: 'Buraco de treino criado para o tutorial.',
+      holes: [{ par: 4, yds: 300, g: 295, t: { straight: 1, sideBk: 1 } }],
+      water: [1]
     }
   ];
   let COURSE, COURSE_PAR, COURSE_YDS, WATER_HOLES, COURSE_SEED, courseIdx = 0;
@@ -1275,8 +1421,8 @@ body.ed-open { overflow: hidden; }
     toast: $('toast'), fill: $('fill'), read: $('read'), aimBox: $('aimBox'), result: $('result'), clubs: $('clubs'),
     resCaca: $('resCaca'), resTitle: $('resTitle'), resText: $('resText'), nextBtn: $('nextBtn'),
     muteBtn: $('muteBtn'), cardBtn: $('cardBtn'), cardClose: $('cardClose'), precBtn: $('precBtn'), aiBtn: $('aiBtn'), accRow: $('accRow'), azone: $('azone'), amk: $('amk'), accRead: $('accRead'), newBtn: $('newBtn'), giveBtn: $('giveBtn'), saveBtn: $('saveBtn'), resumeBtn: $('resumeBtn'), resumeDel: $('resumeDel'), resumeHint: $('resumeHint'), card: $('card'),
-    setup: $('setup'), game: $('game'), cardSec: $('cardSec'), segN: $('segN'), names: $('names'), startBtn: $('startBtn'), installBtn: $('installBtn'), credits: $('credits'), creditsBtn: $('creditsBtn'), creditsClose: $('creditsClose'), crBody: $('crBody'), installHint: $('installHint'),
-    segF: $('segF'), segH: $('segH'), halfRow: $('halfRow'), fmtHint: $('fmtHint'), segM: $('segM'), modeHint: $('modeHint')
+    home: $('home'), setup: $('setup'), game: $('game'), cardSec: $('cardSec'), segN: $('segN'), names: $('names'), startBtn: $('startBtn'), installBtn: $('installBtn'), credits: $('credits'), creditsBtn: $('creditsBtn'), creditsClose: $('creditsClose'), crBody: $('crBody'), installHint: $('installHint'),
+    dicasBtn: $('dicasBtn'), segF: $('segF'), segH: $('segH'), halfRow: $('halfRow'), fmtHint: $('fmtHint'), segM: $('segM'), modeHint: $('modeHint')
   };
 
   let devScale = 1;
@@ -1426,8 +1572,13 @@ body.ed-open { overflow: hidden; }
     els.credits.hidden = true;
     if (credFocus && credFocus.focus) credFocus.focus();
   }
-  els.creditsBtn.addEventListener('click', openCredits);
   els.creditsClose.addEventListener('click', closeCredits);
+  let helpFocus = null;
+  function openHelp() { helpFocus = document.activeElement; $('helpOv').hidden = false; $('helpOv').scrollTop = 0; $('helpClose').focus(); }
+  function closeHelp() { $('helpOv').hidden = true; if (helpFocus && helpFocus.focus) helpFocus.focus(); }
+  $('helpBtn').addEventListener('click', openHelp);
+  $('helpClose').addEventListener('click', closeHelp);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('helpOv').hidden) closeHelp(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !els.credits.hidden) closeCredits(); });
 
   /* ---------- instalar como app (só no navegador; no app instalado o botão some) ---------- */
@@ -1749,13 +1900,20 @@ body.ed-open { overflow: hidden; }
   }
 
   /* ---------- tacos ---------- */
+  const CLUB_SVG = [
+    '<ellipse cx="8.5" cy="19" rx="4.6" ry="2.8" transform="rotate(-20 8.5 19)"/><path d="M18 3L10.5 16.5"/>',
+    '<ellipse cx="8.5" cy="19" rx="3.6" ry="2.2" transform="rotate(-20 8.5 19)"/><path d="M18 3L10.5 16.5"/>',
+    '<path d="M10.5 16.5L4 19v2.5h7z"/><path d="M18 3L10.5 16.5"/>',
+    '<path d="M10.5 16.5L5.5 17.5 4 21.5h7z"/><path d="M18 3L10.5 16.5"/>',
+    '<rect x="6" y="18" width="11" height="3" rx="1"/><path d="M12 3v15"/>'];
+  function clubIcon(i) { return '<svg class="ci" viewBox="0 0 24 24" aria-hidden="true">' + CLUB_SVG[i] + '</svg>'; }
   function buildClubs() {
     CLUBS.forEach((c, i) => {
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'club';
       b.setAttribute('role', 'radio');
-      b.innerHTML = '<span class="cn">' + c.name + '</span><span class="cd">' +
+      b.innerHTML = '<span class="cn">' + clubIcon(i) + c.name + '</span><span class="cd">' +
         (c.loft > 0 ? c.carry + ' jd<span class="cl"> · ' + c.loft + '°</span>' : '<span class="cl">rola · </span>' + c.roll + ' jd') + '</span>';
       b.addEventListener('click', () => selectClub(i));
       els.clubs.appendChild(b);
@@ -1839,12 +1997,30 @@ body.ed-open { overflow: hidden; }
     const mg = Math.min(30, 6 + d * 0.9), dxN = Math.abs(cx - bx) + mg, dyN = Math.abs(cy - by) + mg * 0.8;
     const zfitN = Math.min(W / dxN, H / dyN);
     const zf = zfit * (1 - wN) + Math.max(zfit, zfitN) * wN;
-    const z = Math.max(1, Math.min(zdes, zf));
+    const zfl = zf * (1 - sm(100, 40, d));                        // a partir de ~100 jd, já enquadra só bola + green (sem espaço extra)
+    const z = Math.max(1, Math.min(zdes, zf), zfl);
     const hv = H / z;
     camT.z = z;
     const gy = ((ytop0 - 0.07 * hv) + (ybot0 + 0.17 * hv)) / 2, gxc = (xl0 + xr0) / 2;
     camT.y = gy * (1 - wN) + ((by + cy) / 2) * wN;
     camT.x = gxc * (1 - wN) + ((bx + cx) / 2) * wN;
+    // bandeira além do alcance: a janela vai só da bola até o alcance do taco mais longo disponível (zoom nunca acima disso)
+    const R = reachYd(), wr = sm(R * REACH_BLEND, R, d);            // wr = 1: janela clássica; wr = 0: janela de alcance
+    if (wr < 1 && d > 1e-6) {
+      const ux = (cx - bx) / d, uy = (cy - by) / d, L = R * REACH_PAD;
+      const tx = bx + ux * L, ty = by + uy * L;
+      const yt = Math.min(by, ty), yb = Math.max(by, ty), xl = Math.min(bx, tx), xr = Math.max(bx, tx);
+      const z2 = Math.max(1, Math.min(H / Math.max((yb - yt) / 0.78, 40), W / ((xr - xl) / 0.78 + 36)));
+      camT.z = Math.exp(Math.log(z2) * (1 - wr) + Math.log(camT.z) * wr);
+      camT.x = (xl + xr) / 2 * (1 - wr) + camT.x * wr;
+      camT.y = (yt + yb) / 2 * (1 - wr) + camT.y * wr;
+    }
+  }
+  const REACH_PAD = 1.12, REACH_BLEND = 1.35;                        // folga p/ rolamento; faixa de transição (x alcance)
+  function reachYd() {                                               // alcance (jd) do taco de voo mais longo permitido neste terreno
+    let m = 0;
+    for (let i = 0; i < CLUBS.length; i++) if (CLUBS[i].loft > 0 && clubOk(i)) m = Math.max(m, CLUBS[i].carry);
+    return Math.max(40, m * lieMult());
   }
 
   /* bandeira em posição aleatória dentro do green: frente (vermelha), meio (branca) ou fundo (azul) */
@@ -1880,7 +2056,7 @@ body.ed-open { overflow: hidden; }
 
   // vento do buraco: 8 direções (para onde sopra) e 3 forças
   function pickWind(h) {
-    const k = Math.floor(Math.random() * 8), l = Math.floor(Math.random() * 3), a = k * Math.PI / 4 + (h.nrot || 0), sp = WIND_LVL[l].s;
+    const k = Math.floor(Math.random() * 8), l = tut ? 0 : Math.floor(Math.random() * 3), a = k * Math.PI / 4 + (h.nrot || 0), sp = WIND_LVL[l].s;
     h.wind = { k: k, l: l, s: sp, wx: Math.cos(a) * sp, wy: Math.sin(a) * sp };
   }
 
@@ -1920,6 +2096,7 @@ body.ed-open { overflow: hidden; }
     kb.ang = Math.atan2(HOLES[hi].cup[1] - ball.y, HOLES[hi].cup[0] - ball.x);
     kb.active = false;
     setLie(); autoClub(); updateHud(); renderCard();
+    tipBefore();
     aiCheck();
   }
   function advanceTurn() {
@@ -1941,8 +2118,280 @@ body.ed-open { overflow: hidden; }
     document.body.appendChild(d);
     cacaPopTimer = setTimeout(() => { d.remove(); }, 3000);
   }
+  /* ---------- estatísticas por jogador (somente humanos; localStorage) ---------- */
+  const STAT_KEY = 'capivara-golfe-estatisticas-v1';
+  function statNorm(n) { return String(n || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\s+/g, ' ').trim(); }
+  function statLoad() {
+    try { const o = JSON.parse(localStorage.getItem(STAT_KEY) || 'null'); if (o && o.v === 1 && o.profiles && Array.isArray(o.hio)) return o; } catch (e) {}
+    return { v: 1, profiles: {}, hio: [] };
+  }
+  function statSave(o) { try { localStorage.setItem(STAT_KEY, JSON.stringify(o)); return true; } catch (e) { return false; } }
+  function statOn() { return !testSeq && !tut && !!players[cur] && !players[cur].ai; }
+  function statFresh() { return { pu: 0, sd: 0, tee: 0, og: 0, fw: null, gir: null }; }
+  function statRest() {                                            // bola parou (sem penalidade)
+    if (!statOn()) return;
+    const st = players[cur].st; if (!st) return;
+    const par = HOLES[hi].par;
+    if (!st.tee) { st.tee = 1; if (par >= 4) st.fw = (lieKey === 'fairway' || lieKey === 'green' || lieKey === 'tee') ? 1 : 0; }
+    if (!st.og && lieKey === 'green') { st.og = 1; st.gir = strokes <= par - 2 ? 1 : 0; }
+  }
+  function statPen() {                                              // água/OB
+    if (!statOn()) return;
+    const st = players[cur].st; if (!st) return;
+    if (!st.tee) { st.tee = 1; if (HOLES[hi].par >= 4) st.fw = 0; }
+  }
+  function statHole(p, n, ab) {
+    if (p.ai || testSeq || tut) return;
+    if (!p.rec) p.rec = [];
+    if (p.rec.some((r) => r.s === si)) return;
+    const par = HOLES[hi].par, st = p.st || statFresh();
+    let gir = null, fw = null;
+    if (!ab) {
+      gir = n === 1 ? 1 : (st.gir !== null ? st.gir : (n <= par - 2 ? 1 : 0));
+      fw = par >= 4 ? (n === 1 ? 1 : st.fw) : null;
+    }
+    const r = { s: si, h: hi, par: par, n: n, ab: ab ? 1 : 0, pu: ab ? null : st.pu, sd: st.sd, gir: gir, fw: fw, sc: (!ab && gir === 0) ? (n <= par ? 1 : 0) : null };
+    p.rec.push(r);
+    if (!ab && n === 1) {
+      const o = statLoad(), id = gameId + '-' + players.indexOf(p) + '-' + si;
+      if (!o.hio.some((x) => x.id === id)) { o.hio.push({ id: id, k: statNorm(p.name), name: p.name, ts: Date.now(), c: COURSES[courseIdx].id, h: hi + 1 }); statSave(o); }
+    }
+  }
+  function statCommit() {
+    if (testSeq || tut) return;
+    const o = statLoad(); let ch = false;
+    players.forEach((p, i) => {
+      if (p.ai || !p.rec || p.rec.length !== seq.length) return;
+      const k = statNorm(p.name); if (!k) return;
+      const id = gameId + '-' + i;
+      const pr = o.profiles[k] || (o.profiles[k] = { name: p.name, rounds: [] });
+      if (pr.rounds.some((r) => r.id === id)) return;
+      pr.name = p.name;
+      pr.rounds.push({ id: id, t: Date.now(), c: COURSES[courseIdx].id, f: seq.length, m: planMode, par: planPar, tot: totalOf(p), holes: p.rec.slice() });
+      ch = true;
+    });
+    if (ch) statSave(o);
+  }
+  function statCompute(rs) {
+    const A = { rounds: rs.length, holes: 0, vs: 0, res: { hio: 0, alb: 0, eag: 0, bir: 0, par: 0, bog: 0, dbl: 0, tri: 0, ab: 0 }, gir: [0, 0], fw: [0, 0], pu: [0, 0], puG: [0, 0], sc: [0, 0], sd: 0, byPar: { 3: [0, 0], 4: [0, 0], 5: [0, 0] }, best: null };
+    rs.forEach((r) => {
+      A.vs += r.tot - r.par;
+      if (r.f === 18 && (!A.best || r.tot - r.par < A.best.tot - A.best.par)) A.best = r;
+      r.holes.forEach((h) => {
+        A.holes++;
+        const d = h.n - h.par;
+        const k = h.ab ? 'ab' : h.n === 1 ? 'hio' : d <= -3 ? 'alb' : d === -2 ? 'eag' : d === -1 ? 'bir' : d === 0 ? 'par' : d === 1 ? 'bog' : d === 2 ? 'dbl' : 'tri';
+        A.res[k]++;
+        A.sd += h.sd || 0;
+        if (A.byPar[h.par]) { A.byPar[h.par][0] += h.n; A.byPar[h.par][1]++; }
+        if (h.gir != null) { A.gir[1]++; A.gir[0] += h.gir; if (h.gir) { A.puG[1]++; A.puG[0] += h.pu || 0; } }
+        if (h.fw != null) { A.fw[1]++; A.fw[0] += h.fw; }
+        if (h.pu != null) { A.pu[1]++; A.pu[0] += h.pu; }
+        if (h.sc != null) { A.sc[1]++; A.sc[0] += h.sc; }
+      });
+    });
+    return A;
+  }
+  let stSel = '', stF = { c: '', f: '', m: '' }, stDelArm = 0;
+  const stP2 = (x) => String(x).padStart(2, '0');
+  const stDate = (t) => { const d = new Date(t); return stP2(d.getDate()) + '/' + stP2(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + stP2(d.getHours()) + ':' + stP2(d.getMinutes()); };
+  const stNum = (x, d) => x.toFixed(d == null ? 2 : d).replace('.', ',');
+  const stPct = (a, b) => b ? Math.round(a / b * 100) + '%' : '—';
+  const stFrac = (a) => a[1] ? a[0] + '/' + a[1] + ' · ' + stPct(a[0], a[1]) : '—';
+  const stAvg = (a, d) => a[1] ? stNum(a[0] / a[1], d) : '—';
+  function statRender() {
+    const o = statLoad(), keys = Object.keys(o.profiles).sort((a, b) => o.profiles[a].name.localeCompare(o.profiles[b].name, 'pt-BR'));
+    if (!o.profiles[stSel]) stSel = keys[0] || '';
+    const opt = (v, t, sel) => '<option value="' + esc(v) + '"' + (sel ? ' selected' : '') + '>' + esc(t) + '</option>';
+    let h = '<div class="cr-head"><h2 id="stTitle">Estatísticas</h2><button class="btn" id="stClose" type="button">Fechar</button></div>';
+    if (!keys.length) h += '<p class="st-empty">Ainda não há rodadas completas registradas neste aparelho. As estatísticas contam só jogadores humanos e só rodadas terminadas (todos os buracos do formato escolhido).</p>';
+    else {
+      h += '<div class="st-bar"><select id="stProf" aria-label="Jogador">' + keys.map((k) => opt(k, o.profiles[k].name + ' (' + o.profiles[k].rounds.length + ')', k === stSel)).join('') + '</select>';
+      h += '<select id="stC" aria-label="Campo">' + opt('', 'Todos os campos', !stF.c) + COURSES.filter((c) => !c.hidden).map((c) => opt(c.id, c.name, stF.c === c.id)).join('') + '</select>';
+      h += '<select id="stFm" aria-label="Formato">' + opt('', 'Todos os formatos', !stF.f) + [18, 9, 3].map((n) => opt(String(n), n + ' buracos', stF.f === String(n))).join('') + '</select>';
+      h += '<select id="stM" aria-label="Modo">' + opt('', 'Todos os modos', !stF.m) + MODES.map((m) => opt(m[0], m[1], stF.m === m[0])).join('') + '</select></div>';
+      const rs = o.profiles[stSel].rounds.filter((r) => (!stF.c || r.c === stF.c) && (!stF.f || String(r.f) === stF.f) && (!stF.m || r.m === stF.m));
+      const A = statCompute(rs);
+      if (!rs.length) h += '<p class="st-empty">Nenhuma rodada deste jogador com esses filtros.</p>';
+      else {
+        const cn = (id) => { const c = COURSES.find((x) => x.id === id); return c ? c.name : id; };
+        h += '<p class="cr-grp">Resumo</p><table class="st-tbl"><tbody>';
+        h += '<tr><td>Rodadas completas</td><td>' + A.rounds + '</td></tr><tr><td>Buracos jogados</td><td>' + A.holes + '</td></tr>';
+        h += '<tr><td>Média em relação ao par<span class="st-sub">por rodada (formatos misturados somam tacadas de cada formato)</span></td><td>' + (A.vs / A.rounds >= 0 ? '+' : '−') + stNum(Math.abs(A.vs / A.rounds)) + '</td></tr>';
+        h += '<tr><td>Melhor rodada de 18 buracos</td><td>' + (A.best ? A.best.tot + ' (' + (A.best.tot - A.best.par >= 0 ? '+' : '−') + Math.abs(A.best.tot - A.best.par) + ')<span class="st-sub">' + esc(cn(A.best.c)) + ' · ' + stDate(A.best.t) + '</span>' : '—') + '</td></tr></tbody></table>';
+        h += '<p class="cr-grp">Resultados por buraco</p><table class="st-tbl"><thead><tr><th>Resultado</th><th>Qtd</th><th>%</th></tr></thead><tbody>';
+        [['hio', 'Hole in one'], ['alb', 'Albatroz'], ['eag', 'Eagle'], ['bir', 'Birdie'], ['par', 'Par'], ['bog', 'Bogey'], ['dbl', 'Duplo bogey'], ['tri', 'Triplo bogey'], ['ab', 'Abandonado (quádruplo bogey ou pior)']].forEach((r) => {
+          const n = A.res[r[0]], w = A.holes ? Math.round(n / A.holes * 100) : 0;
+          h += '<tr><td>' + r[1] + '</td><td>' + n + '</td><td class="st-b" style="--w:' + w + '%">' + stPct(n, A.holes) + '</td></tr>';
+        });
+        h += '</tbody></table>';
+        h += '<p class="cr-grp">Jogo longo e curto</p><table class="st-tbl"><tbody>';
+        h += '<tr><td>Greens em regulação (GIR)</td><td>' + stFrac(A.gir) + '</td></tr>';
+        h += '<tr><td>Fairways acertados<span class="st-sub">só pares 4 e 5, na tacada de saída</span></td><td>' + stFrac(A.fw) + '</td></tr>';
+        h += '<tr><td>Putts por buraco</td><td>' + stAvg(A.pu) + '</td></tr>';
+        h += '<tr><td>Putts por GIR</td><td>' + stAvg(A.puG) + '</td></tr>';
+        h += '<tr><td>Scrambling<span class="st-sub">par ou melhor sem ter feito o GIR</span></td><td>' + stFrac(A.sc) + '</td></tr>';
+        h += '<tr><td>Tacadas na areia</td><td>' + A.sd + (A.rounds ? ' · ' + stNum(A.sd / A.rounds) + ' por rodada' : '') + '</td></tr></tbody></table>';
+        h += '<p class="cr-grp">Média de tacadas por tipo de buraco</p><table class="st-tbl"><tbody>';
+        [3, 4, 5].forEach((p) => { h += '<tr><td>Par ' + p + '</td><td>' + (A.byPar[p][1] ? stAvg(A.byPar[p]) + ' <span class="st-sub">' + A.byPar[p][1] + ' buraco(s)</span>' : '—') + '</td></tr>'; });
+        h += '</tbody></table>';
+      }
+      h += '<p style="margin:18px 0 0"><button class="btn" id="stDel" type="button">' + (stDelArm ? 'Toque de novo para apagar o perfil ' + esc(o.profiles[stSel].name) : 'Apagar este perfil') + '</button></p>';
+    }
+    h += '<p class="cr-grp">Hole in one — todos os jogadores</p>';
+    if (!o.hio.length) h += '<p class="st-empty">Nenhum registrado ainda.</p>';
+    else {
+      h += '<ol class="st-hio">' + o.hio.slice().sort((a, b) => a.ts - b.ts).map((x) => {
+        const c = COURSES.find((q) => q.id === x.c);
+        return '<li><span class="st-when">' + stDate(x.ts) + '</span><b>' + esc(x.name) + '</b> · buraco ' + x.h + ' · ' + esc(c ? c.name : x.c) + '</li>';
+      }).join('') + '</ol>';
+    }
+    h += '<p class="st-note">Perfil = nome digitado, sem distinguir maiúsculas nem acentos (João = joao). Só jogadores humanos; só rodadas completas entram nas médias. Abandonado = buraco encerrado por atingir o máximo de tacadas (par + 4); conta no resultado, mas fica fora de putts, GIR, fairway e scrambling. GIR = bola no green com, no máximo, par − 2 tacadas (inclui bola encaixada de fora do green com esse total). Fairway = bola parada no fairway (ou no green) após a saída. Os dados ficam só neste aparelho/navegador; o histórico de hole in one não é apagado ao apagar um perfil.</p>';
+    $('statsIn').innerHTML = h;
+    const on = (id, fn) => { const e = $(id); if (e) e.addEventListener(id === 'stClose' || id === 'stDel' ? 'click' : 'change', fn); };
+    on('stClose', statClose);
+    on('stProf', (e) => { stSel = e.target.value; stDelArm = 0; statRender(); });
+    on('stC', (e) => { stF.c = e.target.value; statRender(); });
+    on('stFm', (e) => { stF.f = e.target.value; statRender(); });
+    on('stM', (e) => { stF.m = e.target.value; statRender(); });
+    on('stDel', () => {
+      if (!stDelArm) { stDelArm = 1; statRender(); setTimeout(() => { if (stDelArm) { stDelArm = 0; if (!$('stats').hidden) statRender(); } }, 4000); return; }
+      stDelArm = 0; const q = statLoad(); delete q.profiles[stSel]; statSave(q); stSel = ''; statRender();
+    });
+  }
+  function statOpen() { stDelArm = 0; $('stats').hidden = false; statRender(); $('stats').scrollTop = 0; }
+  function statClose() { $('stats').hidden = true; }
+  $('statsBtn').addEventListener('click', statOpen);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('stats').hidden) statClose(); });
+
+  /* ---------- tutorial e dicas da Cacá ---------- */
+  const HINT_KEY = 'capivara-golfe-dicas-v1';
+  let tut = null, hintsOn = false, tipQ = [], tipCur = null, tipTimer = 0, shotInfo = null;
+  try { hintsOn = localStorage.getItem(HINT_KEY) === '1'; } catch (e) {}
+  const tipOv = $('tutOv'), tipTxt = $('tutTxt'), tipOk = $('tutOk'), tipSkip = $('tutSkip'), tipImg = $('tutImg');
+  function tipBusy() { return !!tipCur && tipCur.modal; }
+  function tipHide() { clearTimeout(tipTimer); tipCur = null; tipOv.hidden = true; tipOv.classList.remove('modal'); }
+  function tipClear() { tipQ = []; tipHide(); }
+  function tipNext() {
+    clearTimeout(tipTimer);
+    const it = tipQ.shift();
+    if (!it) { tipHide(); return; }
+    tipCur = it;
+    if (!tipImg.src || tipImg.dataset.ok !== '1') { tipImg.src = CACA_IMG.dancando; tipImg.dataset.ok = '1'; }
+    tipTxt.textContent = it.t;
+    tipOv.hidden = false; tipOv.classList.toggle('modal', !!it.modal);
+    tipOk.textContent = it.modal ? (tipQ.length ? 'Próximo' : 'Entendi') : 'Ok';
+    tipSkip.hidden = !(tut && it.modal);
+    if (!it.modal) tipTimer = setTimeout(tipNext, 7000);
+  }
+  function tipPush(list) {
+    list.forEach((t) => tipQ.push({ t: t, modal: !!tut }));
+    if (!tipCur || !tipCur.modal) tipNext();
+  }
+  tipOk.addEventListener('click', tipNext);
+  tipSkip.addEventListener('click', () => { tipClear(); newBtnForce(); });
+  function newBtnForce() { confirming = false; els.newBtn.textContent = 'Novo jogo'; toSetup(); }
+  function sugClub(d) {
+    const cs = CLUBS.filter((c) => c.loft > 0).sort((a, b) => a.carry - b.carry);
+    for (const c of cs) if (c.carry * lieMult() * 0.95 >= d) return c;
+    return cs[cs.length - 1];
+  }
+  const nm = (i) => CLUBS[i].name;
+  function tipBefore() {
+    if (!(tut || hintsOn) || !players[cur] || players[cur].ai) return;
+    const h = HOLES[hi], d = Math.round(Math.hypot(h.cup[0] - ball.x, h.cup[1] - ball.y)), zn = Math.round(zoneFor(clubIdx) * 100);
+    const lie = lieKey, ctx = lie === 'tee' ? 'tee' : lie, items = [];
+    const wind = WIND_LVL[h.wind.l].n.toLowerCase();
+    const lieTxt = lie === 'rough' ? 'Você está no rough: a faixa verde fica 20% menor (agora ' + zn + '% da barra), o erro de direção aumenta e a bola mantém só 80% da distância. Use um taco com alcance de sobra.'
+      : lie === 'sand' ? 'Você está na areia: a faixa verde fica 40% menor (agora ' + zn + '% da barra), o erro aumenta e a bola mantém só 50% da distância. O Wedge já foi escolhido; o objetivo é sair da areia.' : '';
+    const sg = sugClub(d), putPct = Math.round(Math.min(1, Math.pow(d / PUTT_RANGE, 1 / PUTT_EXP)) * 100);
+    if (tut) {
+      const seen = tut.seen;
+      if (lie === 'tee' && strokes === 0 && !seen.tee) {
+        seen.tee = 1;
+        items.push('Oi, eu sou a Cacá, a Head Pro! Vou te ensinar a jogar este buraco, passo a passo. É um par 4: o par é o número de tacadas esperado para colocar a bola no buraco. Cada tacada soma no contador "Tacadas"; quanto menos, melhor.');
+        items.push('Para tacar, toque em qualquer lugar do campo e puxe para trás, como um estilingue, e solte. A bola vai para o lado oposto ao do arrasto. Quanto mais você puxa, mais força (veja a barra Força).');
+        items.push('O taco já está escolhido: Driver, o de maior alcance (cerca de 230 jd com força máxima), usado na saída. Em "Terreno" você vê onde a bola está e em "Vento", para onde ele sopra e empurra a bola (hoje o vento está ' + wind + ').');
+        items.push('Ao soltar, um marcador corre pela barra Precisão. Toque na tela quando ele estiver na faixa verde: a bola sai reta (um pequeno desvio é normal se não for bem no centro). Com o Driver a faixa verde é estreita: ' + zn + '% da barra.');
+        items.push('Se errar a faixa: parou à esquerda do verde, a bola faz hook (curva para a esquerda); à direita, slice (curva para a direita). Quanto mais longe da faixa, mais torta e mais curta. Se o marcador chegar ao fim sem você tocar, a tacada falha (shank, topada, toe ou heel): a bola sai curta e sem direção.');
+        items.push('Cuidado com os perigos. Rough (grama alta) e areia deixam a faixa verde menor e tiram distância: no rough a bola mantém 80% da distância, na areia só 50%. Água: +1 tacada e a bola é dropada 5 jd atrás do ponto onde entrou. Fora do campo (OB): +1 tacada e você joga de novo do mesmo ponto. Neste buraco há água e areia ao lado do fairway. Mire no meio dele. Pode bater!');
+      } else if (lie === 'tee') items.push('Jogue de novo do tee. Olhe onde o marcador parou na última vez e tente tocar dentro da faixa verde (' + zn + '% da barra).');
+      else if (lie === 'green') {
+        if (!seen.green) { seen.green = 1; items.push('Você está no green! Aqui o taco é o Putter: a força controla a distância (alcance máximo de uns 60 jd) e as inclinações do green desviam a bola. Faltam ' + d + ' jd. Como ponto de partida, tente uns ' + putPct + '% de força e ajuste olhando a inclinação. A faixa verde do putter é a mais larga: ' + zn + '%. Bola que chega devagar perto do buraco cai; muito rápida passa direto.'); }
+        else items.push('Putt: faltam ' + d + ' jd. Referência: uns ' + putPct + '% de força, ajustando pela inclinação.');
+      } else {
+        if (!seen[ctx]) { seen[ctx] = 1; items.push((lieTxt ? lieTxt + ' ' : 'Bom, você está no fairway! ') + 'Faltam ' + d + ' jd até a bandeira. Troque o taco nos botões: Madeira alcança cerca de 205 jd, Ferro 150 e Wedge 80, com força máxima. Escolha um taco que cubra a distância sem exigir força total. Sugestão: ' + nm(CLUBS.indexOf(sg)) + '.'); }
+        else items.push((lieTxt ? lieTxt + ' ' : '') + 'Faltam ' + d + ' jd. Sugestão: ' + nm(CLUBS.indexOf(sg)) + '.');
+      }
+    } else {
+      if (lie === 'tee') items.push('Saída com o ' + nm(clubIdx) + ': faixa verde de ' + zn + '% da barra. À esquerda da faixa = hook; à direita = slice.');
+      else if (lie === 'green') items.push('Putt: faltam ' + d + ' jd. Referência: uns ' + putPct + '% de força, ajustando pela inclinação.');
+      else items.push((lieTxt ? lieTxt + ' ' : '') + 'Faltam ' + d + ' jd. Sugestão: ' + nm(CLUBS.indexOf(sg)) + '.');
+    }
+    if (items.length) tipPush(items);
+  }
+  function tipAfter(kind) {
+    if (!(tut || hintsOn) || !shotInfo || !players[cur] || players[cur].ai) return;
+    const S = shotInfo, c = CLUBS[S.ci], out = [];
+    const right = S.e > 0;
+    if (S.miss) out.push('O marcador chegou ao fim da barra sem você tocar, então a tacada falhou (' + (c.loft > 0 ? 'shank, topada, toe ou heel' : 'putt falho') + '). Toque na tela quando o marcador estiver na faixa verde. Com mais força o marcador corre mais rápido, então prepare o dedo.');
+    else if (S.prec && S.mag > 0) {
+      const shape = c.loft > 0 ? (right ? 'slice, a bola curvou para a direita' : 'hook, a bola curvou para a esquerda') : (right ? 'o putt foi empurrado para a direita' : 'o putt foi puxado para a esquerda');
+      out.push('Você tocou ' + (right ? 'à direita' : 'à esquerda') + ' da faixa verde: ' + shape + ' e perdeu distância. Para sair reta, toque com o marcador dentro da faixa verde, o mais perto do centro que conseguir.');
+    } else if (S.prec) {
+      out.push(Math.abs(S.dev) < 0.5 ? 'Boa! O marcador ficou na faixa verde, perto do centro: a bola sai quase reta.' : 'Dentro da faixa verde, mas perto da borda: por isso a bola saiu com um pequeno desvio para a ' + (S.dev > 0 ? 'direita' : 'esquerda') + '. Quanto mais perto do centro da faixa, mais reta.');
+    }
+    if (kind === 'water') out.push('A bola caiu na água: +1 tacada e foi dropada 5 jd atrás do ponto de entrada. Na próxima, mire mais longe da água ou use um taco de menos alcance.');
+    else if (kind === 'ob') out.push('A bola saiu do campo (OB): +1 tacada, e você joga de novo do mesmo ponto. Mire mais para dentro do fairway.');
+    else if (kind === 'sink') { const n = strokes; out.push('Entrou! ' + label(n, HOLES[hi].par).replace('!', '') + ', em ' + tacadas(n) + ' (par ' + HOLES[hi].par + ').' + (tut ? ' Parabéns, você terminou o tutorial!' : '')); }
+    else if (kind === 'rest') {
+      if (S.putt && S.prec && !S.miss && S.mag === 0) {
+        const dd = Math.hypot(ball.x - S.x0, ball.y - S.y0);
+        if (dd > S.d0 + 2) out.push('O putt passou do buraco: força demais. Tente menos força na próxima.');
+        else if (dd < S.d0 - 1.5) out.push('O putt ficou curto: faltou força. Puxe um pouco mais na próxima.');
+      }
+      if (lieKey === 'rough' && S.lie !== 'rough') out.push('A bola parou no rough: a próxima tacada terá faixa verde menor e menos distância.');
+      else if (lieKey === 'sand' && S.lie !== 'sand') out.push('A bola parou na areia: a faixa verde da próxima tacada é bem menor e a bola mantém só metade da distância. Vá de Wedge e mire com folga.');
+      else if (lieKey === 'green' && S.lie !== 'green') out.push('Chegou ao green! Agora é com o putter.');
+    }
+    if (out.length) tipPush(out.slice(0, 2));
+  }
+  function tutStart() {
+    const k = COURSES.findIndex((c) => c.id === 'tutorial'); if (k < 0) return;
+    if (!els.setup.hidden || true) { /* só chamado da tela inicial */ }
+    tut = { seen: {}, saved: { n: nSel, c: courseIdx, m: modeSel, ai0: aiSels[0].value, prec: precision } };
+    nSel = 1; aiSels[0].value = '0'; modeSel = 'stroke'; precision = true;
+    els.precBtn.setAttribute('aria-pressed', 'true'); els.precBtn.textContent = 'Precisão: sim';
+    tipClear(); courseIdx = k;
+    startGame();
+    syncDicasBtn();
+  }
+  function tutEnd() {
+    if (!tut) return;
+    const sv = tut.saved; tut = null; tipClear();
+    try { aiSels[0].value = sv.ai0; setN(sv.n); selectCourse(sv.c); modeSel = sv.m; precision = sv.prec; els.precBtn.setAttribute('aria-pressed', String(precision)); els.precBtn.textContent = precision ? 'Precisão: sim' : 'Precisão: não'; } catch (e) {}
+    syncDicasBtn();
+  }
+  function syncDicasBtn() {
+    const on = !!tut || hintsOn;
+    els.dicasBtn.setAttribute('aria-pressed', String(on));
+    els.dicasBtn.textContent = 'Dicas da Cacá: ' + (on ? 'sim' : 'não');
+    els.dicasBtn.disabled = !!tut;
+  }
+  els.dicasBtn.addEventListener('click', () => {
+    if (tut) return;
+    hintsOn = !hintsOn; try { localStorage.setItem(HINT_KEY, hintsOn ? '1' : '0'); } catch (e) {}
+    if (!hintsOn) tipClear();
+    syncDicasBtn();
+    if (hintsOn && state === 'aim' && players[cur] && !players[cur].ai) tipBefore();
+  });
+  $('homeTut').addEventListener('click', tutStart);
+  syncDicasBtn();
+
   function holeOut(forced, giveUp) {
     const p = players[cur], par = HOLES[hi].par, n = giveUp ? giveUp.n : forced ? maxStrokes() : strokes;
+    if (forced && !giveUp && (tut || hintsOn) && !p.ai) tipPush(['Você atingiu o máximo de tacadas do buraco (par + 4): a bola é recolhida e o buraco conta ' + n + '. Em um buraco difícil, jogue seguro e evite os perigos.']);
+    statHole(p, n, !!(forced || giveUp));
     p.scores[hi] = n; p.holed = true; p.forced = forced; p.gaveUp = !!giveUp;
     syncOut();
     if (giveUp) showToast(p.name + ' desistiu do buraco (' + giveUp.why + ')', 2800);
@@ -1968,7 +2417,7 @@ body.ed-open { overflow: hidden; }
       const o = (k - (players.length - 1) / 2) * 3.2;
       p.ball = { x: h.tee[0] + vx * o, y: h.tee[1] + vy * o };
       p.lastRest = { x: p.ball.x, y: p.ball.y };
-      p.strokes = 0; p.holed = false; p.forced = false; p.gaveUp = false; p.lieKey = 'tee'; p.clubIdx = 0;
+      p.strokes = 0; p.holed = false; p.forced = false; p.gaveUp = false; p.lieKey = 'tee'; p.clubIdx = 0; p.st = statFresh();
     });
     syncIn(honors[0]);
     startTurnUi();
@@ -1985,7 +2434,7 @@ body.ed-open { overflow: hidden; }
   const courseBtns = [];
   function selectCourse(i) {
     courseIdx = i;
-    courseBtns.forEach((b, k) => b.setAttribute('aria-checked', String(k === i)));
+    courseBtns.forEach((b, k) => { if (b) b.setAttribute('aria-checked', String(k === i)); });
     if (els.segM && els.segM.children.length) syncMatchUi();
   }
   function buildSetup() {
@@ -1999,6 +2448,7 @@ body.ed-open { overflow: hidden; }
     if (saved && saved.course === 'links') saved.course = 'links9';
     if (saved && saved.course) { const k = COURSES.findIndex((c) => c.id === saved.course); if (k >= 0) courseIdx = k; }
     COURSES.forEach((c, i) => {
+      if (c.hidden) { courseBtns.push(null); return; }
       const par = c.holes.reduce((a, h) => a + h.par, 0), yds = c.holes.reduce((a, h) => a + h.yds, 0), lapTxt = c.laps ? ' (18 em duas voltas)' : '';
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'course'; b.setAttribute('role', 'radio');
@@ -2064,6 +2514,7 @@ body.ed-open { overflow: hidden; }
   }
   function buildSeq() {
     if (testSeq) return testSeq.slice();
+    if (tut) return [0];
     const n = COURSE.length, lapN = COURSES[courseIdx].laps ? COURSES[courseIdx].holes.length : 0;
     const all = []; for (let i = 0; i < n; i++) all.push(i);
     if (fmtSel === '18') return all;
@@ -2093,24 +2544,36 @@ body.ed-open { overflow: hidden; }
     for (let i = 0; i < nSel; i++) {
       const lvl = +aiSels[i].value || 0;
       let nm = raw[i] || (lvl ? aiPickName(lvl, used, raw.slice(0, nSel)) : 'Jogador ' + (i + 1)), base = nm, c = 2;
-      while (used[nm.toLowerCase()]) nm = base + ' ' + (c++);
-      used[nm.toLowerCase()] = 1;
-      players.push({ name: nm, color: PCOL[i], scores: [], ball: { x: 0, y: 0 }, lastRest: { x: 0, y: 0 }, strokes: 0, holed: false, forced: false, lieKey: 'tee', clubIdx: 0, ai: lvl });
+      while (used[nm.toLowerCase()] || used[statNorm(nm)]) nm = base + ' ' + (c++);
+      used[nm.toLowerCase()] = 1; used[statNorm(nm)] = 1;
+      players.push({ name: nm, color: PCOL[i], scores: [], ball: { x: 0, y: 0 }, lastRest: { x: 0, y: 0 }, strokes: 0, holed: false, forced: false, lieKey: 'tee', clubIdx: 0, ai: lvl, rec: [], st: statFresh() });
     }
-    if (!testSeq) try { localStorage.setItem(KEY, JSON.stringify({ n: nSel, names: raw, course: COURSES[courseIdx].id, fmt: fmtSel, half: halfSel, mode: modeSel, ai: aiSels.map((q) => q.value) })); } catch (e) {}
-    els.setup.hidden = true; els.game.hidden = false; els.cardSec.hidden = false;
+    if (!testSeq && !tut) try { localStorage.setItem(KEY, JSON.stringify({ n: nSel, names: raw, course: COURSES[courseIdx].id, fmt: fmtSel, half: halfSel, mode: modeSel, ai: aiSels.map((q) => q.value) })); } catch (e) {}
+    els.setup.hidden = true; els.home.hidden = true; els.game.hidden = false; els.cardSec.hidden = false; window.scrollTo(0, 0);
     els.aiBtn.hidden = !players.some((p) => p.ai > 0);
     document.body.classList.add('playing');
     resize();
     loadHole(seq[0]);
   }
+  function showHome() {
+    els.home.hidden = false; els.setup.hidden = true;
+    refreshResume();
+    window.scrollTo(0, 0);
+  }
+  function showSetup() {
+    els.home.hidden = true; els.setup.hidden = false;
+    window.scrollTo(0, 0);
+  }
   function toSetup() {
+    const goHome = !!tut;                       // saindo do tutorial volta ao início; o resto vai para a tela Jogar
+    tutEnd(); tipClear();
     const wasTest = edEndTest();
     state = 'setup'; aiStop();
     document.body.classList.remove('playing', 'showcard');
     swing = null; drag = null;
     els.accRow.hidden = true;
-    els.setup.hidden = false; els.game.hidden = true; els.cardSec.hidden = true;
+    els.game.hidden = true; els.cardSec.hidden = true;
+    if (goHome) showHome(); else showSetup();
     refreshResume();
     if (wasTest) edOpen(true);
   }
@@ -2221,6 +2684,7 @@ body.ed-open { overflow: hidden; }
     if (state !== 'aim') return;
     ac();
     const c = club();
+    if (statOn() && players[cur].st) { const st = players[cur].st; if (c.loft <= 0 && lieKey === 'green') st.pu++; if (lieKey === 'sand') st.sd++; }
     ball.z = 0; ball.spin = 0;
     const zone = zoneFor(clubIdx);
     const mag = Math.max(0, (Math.abs(e) - zone) / (1 - zone));
@@ -2229,7 +2693,8 @@ body.ed-open { overflow: hidden; }
     const loss = mag > 0 ? 0.09 + 0.17 * mag : 0;
     const m = lieMult();
     const dev = (precision && !miss && mag === 0 && zone > 0 && !isAi()) ? Math.max(-1, Math.min(1, e / zone)) : 0;     // posição dentro da faixa verde (-1..1)
-    const D = dev ? dev * (0.7 + 0.6 * Math.random()) * CLUB_DISP[clubIdx] * (LIE_ERR[lieKey] || 1) : 0;                    // desvio angular de saída
+    const D = dev ? dev * (0.7 + 0.6 * Math.random()) * CLUB_DISP[clubIdx] * (LIE_ERR[lieKey] || 1) : 0;
+    shotInfo = { ci: clubIdx, lie: lieKey, e: e, mag: mag, miss: !!miss, dev: dev, prec: precision, putt: c.loft <= 0 && lieKey === 'green', d0: Math.hypot(HOLES[hi].cup[0] - ball.x, HOLES[hi].cup[1] - ball.y), x0: ball.x, y0: ball.y };                    // desvio angular de saída
     if (miss) {
       mishit(c, ang, pow, m);
     } else if (c.loft > 0) {
@@ -2322,6 +2787,7 @@ body.ed-open { overflow: hidden; }
   function totalOf(p) { let t = 0; seq.forEach((h) => { t += p.scores[h] || 0; }); return t; }
   function showFinal() {
     state = 'final';
+    statCommit();
     saveClearIfSame();
     const lapC = COURSES[courseIdx].laps;
     const fmtTxt = seq.length === COURSE.length ? (lapC ? '18 buracos (2 voltas)' : '18 buracos') : seq.length === 9 ? (lapC ? '9 buracos (1 volta)' : '9 buracos (' + (halfSel === 'out' ? 'ida' : 'volta') + ')') : '3 buracos (' + seq.map((h) => (h + 1) + ' par ' + COURSE[h].par).join(', ') + ')';
@@ -2351,6 +2817,7 @@ body.ed-open { overflow: hidden; }
     }
     els.nextBtn.textContent = 'Nova partida';
     els.resCaca.src = CACA_IMG.comemorando; els.resCaca.hidden = false;
+    if (tut) { els.resTitle.textContent = 'Tutorial concluído!'; els.resText.textContent = 'Você fez ' + tacadas(totalOf(players[0])) + ' no par ' + planPar + '. Agora é só escolher o campo e jogar de verdade. Ative "Dicas da Cacá" se quiser ajuda nas partidas.'; els.nextBtn.textContent = 'Voltar ao início'; }
   }
 
   function renderCard() {
@@ -2437,6 +2904,8 @@ body.ed-open { overflow: hidden; }
     if (isAi() && aiLast) { aiFail.push(aiLast); aiLast = null; }
     if (kind === 'water') { drop = waterDrop(); sfx.splash(); showToast('Na água! +1 tacada · bola dropada 5 jd atrás do ponto de entrada', 2800); }
     else { sfx.ob(); showToast('Fora do campo (OB)! +1 tacada, jogue de novo do mesmo ponto', 2600); }
+    statPen();
+    tipAfter(kind);
     strokes++;
     if (strokes >= maxStrokes()) { updateHud(); holeOut(true); return; }
     if (drop) lastRest = { x: drop.x, y: drop.y };
@@ -2452,7 +2921,7 @@ body.ed-open { overflow: hidden; }
       const h = HOLES[hi], k = Math.min(1, dt * 12);
       ball.x += (h.cup[0] - ball.x) * k;
       ball.y += (h.cup[1] - ball.y) * k;
-      if (sinkT >= 0.45) holeOut(false);
+      if (sinkT >= 0.45) { tipAfter('sink'); holeOut(false); }
       return;
     }
     if (state !== 'roll') return;
@@ -2623,6 +3092,8 @@ body.ed-open { overflow: hidden; }
         ball.vx = 0; ball.vy = 0;
         lastRest = { x: ball.x, y: ball.y };
         setLie();
+        statRest();
+        tipAfter('rest');
         updateHud();
         if (strokes >= maxStrokes()) { holeOut(true); return; }
         advanceTurn();
@@ -3020,6 +3491,37 @@ body.ed-open { overflow: hidden; }
       const tx = 'Vento ' + WIND_LVL[wl].n.toLowerCase() + ' · ' + WIND_DIR[h.wind.k].sh;
       ctx.strokeText(tx, cx + R + 8 * dp, cy + 4 * dp); ctx.fillText(tx, cx + R + 8 * dp, cy + 4 * dp);
     }
+    drawCupArrow(h, b, s);
+  }
+  // indicador na borda da tela apontando a bandeira quando ela está fora da janela
+  function drawCupArrow(h, b, s) {
+    const dp = cv.width / Math.max(1, court.clientWidth);
+    const px = (h.cup[0] - b.l) * s, py = (h.cup[1] - b.t) * s, m = 12 * dp;
+    if (px >= m && px <= cv.width - m && py >= m && py <= cv.height - m) return;
+    const R = 17 * dp, pad = R + 10 * dp, cx0 = cv.width / 2, cy0 = cv.height / 2, dx = px - cx0, dy = py - cy0;
+    const k = Math.min(dx !== 0 ? (cx0 - pad) / Math.abs(dx) : 1e9, dy !== 0 ? (cy0 - pad) / Math.abs(dy) : 1e9);
+    let ax = cx0 + dx * k, ay = cy0 + dy * k;
+    if (ax < 165 * dp && ay < 78 * dp) { if (ay <= pad + 2 * dp) ax = 165 * dp; else ay = 82 * dp; }     // não cobre a bússola
+    const a = Math.atan2(dy, dx), ca = Math.cos(a), sa = Math.sin(a);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.fillStyle = 'rgba(8,20,12,0.72)';
+    ctx.beginPath(); ctx.arc(ax, ay, R, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.85)'; ctx.lineWidth = 1.5 * dp; ctx.stroke();
+    ctx.strokeStyle = '#ffffff'; ctx.lineCap = 'round'; ctx.lineWidth = 2 * dp;
+    ctx.beginPath(); ctx.moveTo(ax - 4 * dp, ay + 8 * dp); ctx.lineTo(ax - 4 * dp, ay - 9 * dp); ctx.stroke();
+    ctx.fillStyle = PIN_COL[h.pinZone] || '#e03a32';
+    ctx.beginPath(); ctx.moveTo(ax - 3 * dp, ay - 9 * dp); ctx.lineTo(ax + 8 * dp, ay - 5 * dp); ctx.lineTo(ax - 3 * dp, ay - 1 * dp); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#ffffff';                                                   // ponta da seta, para fora do círculo
+    const tx0 = ax + ca * (R + 9 * dp), ty0 = ay + sa * (R + 9 * dp);
+    ctx.beginPath(); ctx.moveTo(tx0, ty0);
+    ctx.lineTo(ax + ca * (R + 1 * dp) - sa * 6 * dp, ay + sa * (R + 1 * dp) + ca * 6 * dp);
+    ctx.lineTo(ax + ca * (R + 1 * dp) + sa * 6 * dp, ay + sa * (R + 1 * dp) - ca * 6 * dp);
+    ctx.closePath(); ctx.fill();
+    const dist = Math.round(Math.hypot(h.cup[0] - ball.x, h.cup[1] - ball.y)) + ' jd';
+    ctx.font = '700 ' + (11 * dp) + 'px Figtree, system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.lineJoin = 'round';
+    const ty = ay < cy0 ? ay + R + 14 * dp : ay - R - 6 * dp, tw = ctx.measureText(dist).width / 2 + 3 * dp;
+    const tx = Math.min(cv.width - tw, Math.max(tw, ax));
+    ctx.lineWidth = 3 * dp; ctx.strokeStyle = 'rgba(0,0,0,0.75)'; ctx.strokeText(dist, tx, ty); ctx.fillText(dist, tx, ty);
   }
 
   /* ---------- laço principal ---------- */
@@ -3056,6 +3558,7 @@ body.ed-open { overflow: hidden; }
   cv.addEventListener('pointerdown', (e) => {
     if (state === 'swing') { stopSwing(); e.preventDefault(); return; }
     if (state !== 'aim' || aiBusy) return;
+    if (tipBusy()) return;
     drag = { sx: e.clientX, sy: e.clientY, x: e.clientX, y: e.clientY };
     kb.active = false;
     try { cv.setPointerCapture(e.pointerId); } catch (err) {}
@@ -3075,6 +3578,7 @@ body.ed-open { overflow: hidden; }
   cv.addEventListener('pointercancel', () => { drag = null; });
   cv.addEventListener('keydown', (e) => {
     if (state === 'swing') return;
+    if (tipBusy()) return;
     if (state !== 'aim' || aiBusy) return;
     switch (e.key) {
       case 'ArrowLeft': kb.ang -= 0.03; kb.active = true; break;
@@ -3128,7 +3632,7 @@ body.ed-open { overflow: hidden; }
   function humanTurn() { return state === 'aim' && !testSeq && players[cur] && !players[cur].ai && !swing && !drag; }
   function updTools() {
     if (state === 'setup') return;
-    const g = humanTurn() ? 1 : 0, sv = (!testSeq && (state === 'aim' || state === 'done') && !aiBusy) ? 1 : 0, k = g + '' + sv;
+    const g = (humanTurn() && !tut) ? 1 : 0, sv = (!testSeq && !tut && (state === 'aim' || state === 'done') && !aiBusy) ? 1 : 0, k = g + '' + sv;
     if (k === toolsKey) return;
     toolsKey = k;
     els.giveBtn.hidden = !g; els.saveBtn.hidden = !sv;
@@ -3148,14 +3652,14 @@ body.ed-open { overflow: hidden; }
   function saveRead() { try { const o = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null'); return o && o.v === 1 && Array.isArray(o.players) && Array.isArray(o.seq) ? o : null; } catch (e) { return null; } }
   function saveClearIfSame() { try { const o = saveRead(); if (o && o.gameId === gameId) localStorage.removeItem(SAVE_KEY); } catch (e) {} }
   function saveGame() {
-    if (testSeq || (state !== 'aim' && state !== 'done')) return false;
+    if (testSeq || tut || (state !== 'aim' && state !== 'done')) return false;
     syncOut();
     const h = HOLES[hi];
     const o = {
       v: 1, ts: Date.now(), gameId: gameId, course: COURSES[courseIdx].id, n: nSel, fmt: fmtSel, half: halfSel, mode: modeSel,
       planMode: planMode, planPar: planPar, planYds: planYds, seq: seq, si: si, hi: hi, cur: cur, honors: honors, done: state === 'done',
       hole: { cup: h.cup, pinZone: h.pinZone, wind: h.wind },
-      players: players.map((p) => ({ name: p.name, color: p.color, ai: p.ai, scores: seq.map((i) => (typeof p.scores[i] === 'number' ? p.scores[i] : null)), ball: p.ball, lastRest: p.lastRest, strokes: p.strokes, holed: p.holed, forced: p.forced, gaveUp: p.gaveUp, lieKey: p.lieKey, clubIdx: p.clubIdx }))
+      players: players.map((p) => ({ name: p.name, color: p.color, ai: p.ai, scores: seq.map((i) => (typeof p.scores[i] === 'number' ? p.scores[i] : null)), ball: p.ball, lastRest: p.lastRest, strokes: p.strokes, holed: p.holed, forced: p.forced, gaveUp: p.gaveUp, lieKey: p.lieKey, clubIdx: p.clubIdx, rec: p.rec || [], st: p.st || statFresh() }))
     };
     try {
       localStorage.setItem(SAVE_KEY, JSON.stringify(o));
@@ -3171,13 +3675,13 @@ body.ed-open { overflow: hidden; }
     seq = o.seq.slice(); si = o.si; gameId = o.gameId; honors = o.honors.slice();
     players = o.players.map((q) => {
       const sc = []; seq.forEach((i, k) => { if (typeof q.scores[k] === 'number') sc[i] = q.scores[k]; });
-      return { name: q.name, color: q.color, ai: q.ai, scores: sc, ball: { x: q.ball.x, y: q.ball.y }, lastRest: { x: q.lastRest.x, y: q.lastRest.y }, strokes: q.strokes, holed: q.holed, forced: q.forced, gaveUp: q.gaveUp, lieKey: q.lieKey, clubIdx: q.clubIdx };
+      return { name: q.name, color: q.color, ai: q.ai, scores: sc, ball: { x: q.ball.x, y: q.ball.y }, lastRest: { x: q.lastRest.x, y: q.lastRest.y }, strokes: q.strokes, holed: q.holed, forced: q.forced, gaveUp: q.gaveUp, lieKey: q.lieKey, clubIdx: q.clubIdx, rec: Array.isArray(q.rec) ? q.rec : [], st: q.st || statFresh() };
     });
     hi = o.hi;
     HOLES[hi] = buildHole(hi); HOLE = HOLES[hi];
     HOLE.cup = o.hole.cup.slice(); HOLE.pinZone = o.hole.pinZone; HOLE.wind = o.hole.wind;
     aiFail = []; HOLE.trees.forEach((t) => { t.hit = false; });
-    els.setup.hidden = true; els.game.hidden = false; els.cardSec.hidden = false;
+    els.setup.hidden = true; els.home.hidden = true; els.game.hidden = false; els.cardSec.hidden = false; window.scrollTo(0, 0);
     els.aiBtn.hidden = !players.some((p) => p.ai > 0);
     document.body.classList.add('playing');
     resize();
@@ -3207,7 +3711,10 @@ body.ed-open { overflow: hidden; }
   });
   els.resumeBtn.addEventListener('click', () => { const o = saveRead(); if (!o || !resumeGame(o)) { showToast('Não foi possível retomar o jogo salvo.', 2600); refreshResume(); } });
   els.resumeDel.addEventListener('click', () => { try { localStorage.removeItem(SAVE_KEY); } catch (e) {} refreshResume(); });
-  refreshResume();
+  $('homePlay').addEventListener('click', showSetup);
+  $('setupBack').addEventListener('click', showHome);
+  $('homeCred').addEventListener('click', openCredits);
+  showHome();
 
   let confirming = false;
   els.newBtn.addEventListener('click', () => {
@@ -3861,7 +4368,7 @@ body.ed-open { overflow: hidden; }
   }
   function edFillHoleSel() {
     const sc = $('edCourse'), sh = $('edHole');
-    if (!sc.options.length) COURSES.forEach((c, i) => { const o = document.createElement('option'); o.value = i; o.textContent = c.name; sc.appendChild(o); });
+    if (!sc.options.length) COURSES.forEach((c, i) => { if (c.hidden) return; const o = document.createElement('option'); o.value = i; o.textContent = c.name; sc.appendChild(o); });
     sc.value = String(ED.ci);
     sh.innerHTML = '';
     COURSES[ED.ci].holes.forEach((h, i) => {
@@ -4116,7 +4623,7 @@ body.ed-open { overflow: hidden; }
   edInit();
   window.__ED = { ED: ED, w2s: edW2S, ovr: () => OVR };   // gancho para testes automatizados
 
-  toSetup();
+  toSetup(); showHome();
   requestAnimationFrame(frame);
 })();
 </script>
